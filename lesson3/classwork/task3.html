@@ -1,0 +1,28 @@
+﻿<!DOCTYPE html>
+<html lang="en"> 
+<head> 
+	<meta charset="utf-8">
+	<title>Classwork - task3 (lesson3)</title> 
+	<script>
+		
+		function Summator() {
+			this.sum = function(a, b) {
+				return a + b;
+			}
+			this.run = function() {
+				var valA;
+				var valB;
+				valA = +prompt('Введіть значення 1: ');
+				valB = +prompt('Введіть значення 2: ');
+				document.write(this.sum(valA, valB));
+			}
+		}
+
+		new Summator().run();
+        
+	</script>
+</head> 	
+<body> 
+<!-- html here --> 
+</body>
+</html>

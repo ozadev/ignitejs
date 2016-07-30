@@ -1,0 +1,41 @@
+﻿<!DOCTYPE html>
+<html lang="en"> 
+<head> 
+	<meta charset="utf-8">
+	<title>Homework - task2 (lesson4)</title> 
+	<script>
+		//'use strict';
+
+		function print(val) {
+			document.write(val);
+			document.write('<br>');
+		}
+
+		function compose() {
+
+			var result = arguments[0];
+			for (var i = 1; i < arguments.length; i++) {
+				result = arguments[i](result);
+				//result = arguments[i].call(null, result); // Працює аналогічно
+			}
+			return result;
+		}
+
+		var doubleTheValue = function(val) { 
+			return val * 2; 
+		}
+		var addOneToTheValue = function(val) { 
+			return val + 1; 
+		}
+
+		print(compose(5, doubleTheValue));
+		print(compose(5, doubleTheValue, addOneToTheValue));
+		print(compose(5));
+
+        
+	</script>
+</head> 	
+<body> 
+<!-- html here --> 
+</body>
+</html>

@@ -1,0 +1,32 @@
+﻿<!DOCTYPE html>
+<html lang="en"> 
+<head> 
+	<meta charset="utf-8">
+	<title>Homework - task1 (lesson4)</title> 
+	<script>
+		//'use strict';
+        
+		function print(val) {
+			document.write(val);
+			document.write('<br>');
+		}
+
+		function call(context) {
+			return this.apply(context, [].slice.apply(arguments, [1]));
+			}
+
+		var arr = [1, 3, 5, 3, 4, 1, 3, 4];
+
+		print(Math.max.apply(null, arr));
+
+		print(Math.max.call(null, 1, 3, 5, 3, 4, 1, 3, 4));
+
+		Math.max.call = call;
+		print(Math.max.call(null, 1, 3, 5, 3, 4, 1, 3, 4));
+
+	</script>
+</head> 	
+<body> 
+<!-- html here --> 
+</body>
+</html>

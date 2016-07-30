@@ -1,0 +1,35 @@
+﻿<!DOCTYPE html>
+<html lang="en"> 
+<head> 
+	<meta charset="utf-8">
+	<title>Classwork - task2 (lesson4)</title> 
+	<script>
+		//'use strict';
+
+		function bind(func, context) {
+			return function() {
+				return func.apply(context, arguments);
+			};
+		}
+
+		var user = {
+			firstName: "Вася",
+			sayHi: function() {
+				alert( this.firstName );
+			}
+		}; 
+
+		var f = bind(user.sayHi, user);  
+		f(); 
+
+		var f2 = user.sayHi.bind(user); // через вбудований bind
+		f2();
+
+		user.sayHi.bind({firstName: "Антон"})();
+        
+	</script>
+</head> 	
+<body> 
+<!-- html here --> 
+</body>
+</html>

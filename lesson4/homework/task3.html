@@ -1,0 +1,40 @@
+﻿<!DOCTYPE html>
+<html lang="en"> 
+<head> 
+	<meta charset="utf-8">
+	<title>Homework - task3 (lesson4)</title> 
+	<script>
+		//'use strict'
+
+		function print(val) {
+			document.write(val);
+			document.write('<br>');
+		}
+
+		function makeLogging(f, log) {
+			return function(arg) {
+				log.push(arg);
+				f.call(this, arg); 
+			}
+		}
+
+		function work(a) {
+  			/* ... */ // work - произвольная функция, один аргумент
+		}	
+
+		var log = [];
+		var work = makeLogging(work, log);
+
+		work(1); // 1, добавлено в log
+		work(5); // 5, добавлено в log
+
+		for (var i = 0; i < log.length; i++) {
+		  print( 'Лог:' + log[i] ); // "Лог:1", затем "Лог:5"
+		}
+
+	</script>
+</head> 	
+<body> 
+<!-- html here --> 
+</body>
+</html>

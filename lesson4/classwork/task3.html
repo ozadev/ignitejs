@@ -1,0 +1,29 @@
+﻿<!DOCTYPE html>
+<html lang="en"> 
+<head> 
+	<meta charset="utf-8">
+	<title>Classwork - task3 (lesson4)</title> 
+	<script>
+		//'use strict'
+
+		function joinArgs() {
+
+			var result = [].join.call(arguments, '*');
+			
+			// Оскільки об'єкт arguments дуже схожий на масив, тому скопійований метод join буде працювати 
+			// arguments.join = [].join;
+			// var result = arguments.join('*');
+
+			document.write(result);	
+		}
+
+		joinArgs(1,2,3); // 1*2*3 
+		document.write('<br>');
+		joinArgs('hello', 'world', '!'); // hello*world*!
+        
+	</script>
+</head> 	
+<body> 
+<!-- html here --> 
+</body>
+</html>

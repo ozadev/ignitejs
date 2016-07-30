@@ -1,0 +1,40 @@
+﻿<!DOCTYPE html>
+<html lang="en"> 
+<head> 
+	<meta charset="utf-8">
+	<title>Homework - task1 (lesson3)</title> 
+	<script>
+		//'use strict';
+
+		function print(val) {
+			document.write(val);
+			document.write('<br>');
+		}
+
+		function sum(numA) {
+			var totalSum = numA;
+
+			function add(numB) {
+				totalSum += numB;
+				return add;
+			}
+
+			add.toString = function() {
+				return totalSum;
+			}
+			return add;
+		}
+        
+        print(sum(1) == 1);
+        print(sum(1)(2) == 3); // 1 + 2
+		print(sum(1)(2)(3) == 6); // 1 + 2 + 3
+		print(sum(5)(-1)(2) == 6);
+		print(sum(6)(-1)(-2)(-3) == 0);
+		print(sum(0)(1)(2)(3)(4)(5) == 15);
+
+	</script>
+</head> 	
+<body> 
+<!-- html here --> 
+</body>
+</html>

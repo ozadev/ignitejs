@@ -1,0 +1,26 @@
+﻿<!DOCTYPE html>
+<html lang="en"> 
+<head> 
+	<meta charset="utf-8">
+	<title>Classwork - task1 (lesson4)</title> 
+	<script>
+		//'use strict';
+
+		function sumArgs() {
+			var totalSum = 0;
+
+			[].forEach.call(arguments, function(item) {
+				totalSum += item;
+			});
+
+			return totalSum;
+		}
+
+		document.write(sumArgs(1, 2, 3, 4, 5)); // 15
+        
+	</script>
+</head> 	
+<body> 
+<!-- html here --> 
+</body>
+</html>

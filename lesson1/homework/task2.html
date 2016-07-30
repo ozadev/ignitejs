@@ -1,0 +1,36 @@
+﻿<!DOCTYPE html>
+<html lang="en"> 
+<head> 
+	<meta charset="utf-8">
+	<title>Homework - task2 (lesson1)</title> 
+	<script>
+
+		function sortCompare(a, b) {
+			return a > b;
+		}
+
+		var arr = [1, 90, 789, 56, 45, 34, 678, 78, -90, -6, 5, 3, 6];
+
+		for (var i = 0; i < arr.length - 1; i++) {
+			var swapped = false;
+			for (var j = 0; j < (arr.length - 1 - i); j++) {
+				if (sortCompare(arr[j], arr[j+1])) {
+					var temp = arr[j];
+					arr[j] = arr[j+1];
+					arr[j+1] = temp;
+					var swapped = true;
+				}
+			}
+			if (!swapped) {
+				break;
+			}
+		}
+
+		document.write('result: ' + arr);
+        
+	</script>
+</head> 	
+<body> 
+<!-- html here --> 
+</body>
+</html>

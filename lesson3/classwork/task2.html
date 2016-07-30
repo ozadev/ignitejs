@@ -1,0 +1,45 @@
+﻿<!DOCTYPE html>
+<html lang="en"> 
+<head> 
+	<meta charset="utf-8">
+	<title>Classwork - task2 (lesson3)</title> 
+	<script>
+
+		function print(val) {
+			document.write(val);
+			document.write('<br>');
+		}
+
+
+		function Calculator() {
+
+			this.valA = 0;
+			this.valB = 0;
+
+			this.read = function() {
+				this.valA = +prompt('Введіть значення 1: ');
+				this.valB = +prompt('Введіть значення 2: ');
+			}
+			this.sum = function() {
+				return this.valA + this.valB;
+			}
+			this.mul = function() {
+				return this.valA * this.valB;
+			}
+		}
+
+		var calculator = new Calculator();
+
+		calculator.read();
+
+		print( "Сума=" + calculator.sum() );
+		print( "Добуток=" + calculator.mul() );
+
+	
+        
+	</script>
+</head> 	
+<body> 
+<!-- html here --> 
+</body>
+</html>

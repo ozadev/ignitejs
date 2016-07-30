@@ -1,0 +1,71 @@
+﻿<!DOCTYPE html>
+<html lang="en"> 
+<head> 
+	<meta charset="utf-8">
+	<title>Homework - task2 (lesson2)</title> 
+	<script>
+        
+		// Рекурсивно рахує кількість значень строкового типу у вхідному аргументі. 
+
+		function strCountAll(obj) {
+			var count = 0;
+
+			if (typeof(obj) === 'string') {
+				count++;
+			} else if (Array.isArray(obj)) {
+				for (var i = 0; i < obj.length; i++) {
+					count += strCountAll(obj[i]);
+				}
+			} else if (typeof(obj) === 'object' && obj !== null) {
+				for (var prop in obj) {
+					count += strCountAll(obj[prop]);
+				}
+			} 
+
+			return count;
+		}
+
+		// Приймає вхідний аргумент об'єкт (згідно умові) та рахує кількість значень строкового типу.
+		// Повертає -1, якщо передано не об'єкт.
+
+		function strCount(obj) {
+			if (typeof(obj) === 'object' && obj !== null) {
+				return strCountAll(obj);
+			} else {
+				return -1;
+			}
+		}
+
+		var test1 = strCount({
+			first: "1",
+			second: "2",
+			third: false,
+			fourth: ["anytime",2,3,4],
+			fifth:  null
+		})
+
+		document.write(test1);		// 3
+		document.write('<br><br>');
+
+		var test2 = strCount({
+		    first: "str1",
+		    second: "str2",
+		    third: false,
+		    fourth: ["str3", 2, 3, 4, ["str4", ["str5", {test: "str6"}]]],
+		    fifth: null,
+		    sixth: {test: [{test: ["str7"]}, "str8", 10]}
+		});
+
+		document.write(test2);		// 8
+		document.write('<br><br>');
+
+		var test3 = strCount('str');
+
+		document.write(test3);		// -1
+
+	</script>
+</head> 	
+<body> 
+<!-- html here --> 
+</body>
+</html>

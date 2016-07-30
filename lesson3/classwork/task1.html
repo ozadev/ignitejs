@@ -1,0 +1,32 @@
+﻿<!DOCTYPE html>
+<html lang="en"> 
+<head> 
+	<meta charset="utf-8">
+	<title>Classwork - task1 (lesson3)</title> 
+	<script>
+
+		function print(val) {
+			document.write(val);
+			document.write('<br>');
+		}
+
+		// Порівнюються різні об'єкти, тому false
+		print( [] == [] ); // false
+
+		// Спочатку при логічному перетворення, права частина стане false, потім при порівнянні пустого об'єкта та логічного значення false, отримаємо в результаті true
+		print( [] == ![] ); // true
+
+
+
+		print( ![] ); // !true => false (логічне перетворення)
+
+		print( [] == false) // перетворює [] на '' за доп. метода toString()
+
+		print( '' == false) // '' перетворюється в false при порівнянні, тому false == false (результат true)
+        
+	</script>
+</head> 	
+<body> 
+<!-- html here --> 
+</body>
+</html>

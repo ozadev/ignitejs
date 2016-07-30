@@ -1,0 +1,27 @@
+﻿<!DOCTYPE html>
+<html lang="en"> 
+<head> 
+	<meta charset="utf-8">
+	<title>Homework - task2 (lesson3)</title> 
+	<script>
+		//'use strict';
+
+		function runString(arg, obj) {
+			var func = new Function(obj.param, obj.func);
+			return func(arg);
+		}
+        
+        var arg1 = 4;
+		var arg2 = {
+			param: 'num', 
+			func: 'return Math.sqrt(num)'
+		};
+
+        document.write(runString(arg1, arg2));
+
+	</script>
+</head> 	
+<body> 
+<!-- html here --> 
+</body>
+</html>

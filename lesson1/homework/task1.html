@@ -1,0 +1,29 @@
+﻿<!DOCTYPE html>
+<html lang="en"> 
+<head> 
+	<meta charset="utf-8">
+	<title>Homework - task1 (lesson1)</title> 
+	<script>
+
+		function find(arr, value) {
+			for (var i = 0; i < arr.length; i++) {
+				if (arr[i] === value) {
+					return i;
+				}
+			}
+			return -1;
+		}
+
+		var arrTest = [1, 90, 789, 'str', 1.33, true, false, null, undefined];
+
+		document.write(find(arrTest, 90));
+		document.write('<br>')
+		document.write(arrTest.indexOf(90));
+		document.write('<br>')
+        
+	</script>
+</head> 	
+<body> 
+<!-- html here --> 
+</body>
+</html>

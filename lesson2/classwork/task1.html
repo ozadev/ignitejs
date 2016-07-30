@@ -1,0 +1,40 @@
+﻿<!DOCTYPE html>
+<html lang="en"> 
+<head> 
+	<meta charset="utf-8">
+	<title>Classwork - task1 (lesson2)</title> 
+	<script>
+		
+		var value = 0;
+		function f1() {
+			if (1) {
+		    	value = true;
+			} else {
+		    	var value = false;
+			}
+			alert( value );
+		}
+
+		// Буде визвано алерт з value == true, а значення глобальної змінної value = 0;
+		f1();
+
+		function f2() {
+			if (1) {
+		    	value = true;
+			} else {
+		    	value = false;
+			}
+			alert( value );
+		}
+		
+		// Буде визвано алерт з value == true, а значення глобальної змінної value = true;
+		f2();
+
+		// Отже, у першому випадку відбудеться зміна локального value, а в другому - глобального;
+        
+	</script>
+</head> 	
+<body> 
+<!-- html here --> 
+</body>
+</html>

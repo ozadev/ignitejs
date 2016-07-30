@@ -1,0 +1,58 @@
+﻿<!DOCTYPE html>
+<html lang="en"> 
+<head> 
+	<meta charset="utf-8">
+	<title>Classwork - task3 (lesson2)</title> 
+	<script>
+	
+	// Варіант 1
+	function makeArmyV1() {
+		var shooters = [];
+
+		for (var i = 0; i< 10; i++) {
+	    	var shooter = function(num) {
+	    		return function() {
+	    			document.write(num);
+	    			document.write('<br>');
+	    		}
+			}; 
+			shooters.push(shooter(i)); 
+		} 
+		return shooters; 
+	}
+
+	// Варіант 2
+	function makeArmyV2() {
+		var shooters = [];
+		
+		for (var i = 0; i< 10; i++) {
+	    	var shooter = function sh() { // функция-стрелок
+	    		document.write(sh.num);
+	    		document.write('<br>');
+			};
+			shooter.num = i;
+			shooters.push(shooter); 
+		} 
+		return shooters; 
+	}
+
+
+	var army1 = makeArmyV1(); 
+
+	document.write('Variant 1:<br>');
+	army1[0]();
+	army1[5]();
+
+	var army2 = makeArmyV2(); 
+
+	document.write('Variant 2:<br>');
+	army2[0]();
+	army2[5]();
+
+        
+	</script>
+</head> 	
+<body> 
+<!-- html here --> 
+</body>
+</html>
