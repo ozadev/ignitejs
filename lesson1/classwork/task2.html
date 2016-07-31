@@ -6,6 +6,10 @@
 	<script>
 
 		function isEmpty(obj) {
+			
+			if (obj === null) {
+				return false;
+			}
 			for (prop in obj) {
 				return false;
 			}
@@ -13,6 +17,8 @@
 		}
 
 		document.write(isEmpty({}));
+		document.write('<br>');
+		document.write(isEmpty(null));
 		document.write('<br>');
 
 		document.write(isEmpty({test: "test"}));
