@@ -1,0 +1,50 @@
+﻿<!DOCTYPE html>
+<html lang="en"> 
+<head> 
+	<meta charset="utf-8">
+	<title>Homework - task1 (lesson5)</title> 
+	<script>
+		//'use strict';
+
+		function calcMath(mes) {
+			
+			var message = prompt('Enter math expression: ', mes);
+			var success = false;
+
+			// If user disabled prompt
+			if(message === null) {
+				return -1;
+			}
+
+			try {
+				var result = eval(message);
+				if (typeof result !== 'number' || isNaN(result) || result === Infinity) {
+					throw new Error('Invalid result.');
+				}
+				else {
+					alert('Result: ' + result);
+					success = true;
+				}
+			}
+			catch(err) {
+				alert("Error: " + err.message + "\nPlease change your code to valid math expression!");
+			}
+
+			if (success) {
+				return result;
+			} 
+			else {
+				return calcMath(message);
+			}
+		}
+
+		calcMath();
+
+
+        
+	</script>
+</head> 	
+<body> 
+<!-- html here --> 
+</body>
+</html>

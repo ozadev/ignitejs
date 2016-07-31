@@ -1,0 +1,32 @@
+﻿<!DOCTYPE html>
+<html lang="en"> 
+<head> 
+	<meta charset="utf-8">
+	<title>Homework - task3 (lesson5)</title> 
+	<script>
+		//'use strict';
+
+		function countDownTimer(timerSize) {
+
+			var timer = timerSize;
+			
+			var timerId = setInterval(function() {
+				document.close();
+				document.write(timer--);
+				
+				if (timer < 0) {
+					clearInterval(timerId);
+					document.close();
+					document.write('Timer finished');
+				}
+			}, 1000);
+		}
+
+		countDownTimer(10);
+
+	</script>
+</head> 	
+<body> 
+<!-- html here --> 
+</body>
+</html>

@@ -1,0 +1,52 @@
+﻿<!DOCTYPE html>
+<html lang="en"> 
+<head> 
+	<meta charset="utf-8">
+	<title>Homework - task2 (lesson5)</title> 
+	<script>
+		//'use strict';
+
+		function print(val) {
+			document.write(val);
+			document.write('<br>');
+		}
+
+		function smartSum() {
+			var totalSum = 0;
+
+			[].forEach.call(arguments, function(item) {
+				var number = parseInt(item);
+				if (!isNaN(number)) {
+					totalSum += number;
+				}
+			});
+
+			function add() {
+				[].forEach.call(arguments, function(item) {
+					var number = parseInt(item);
+					if (!isNaN(number)) {
+						totalSum += number;
+					}
+				});
+				return add;
+			}
+
+			add.toString = function() {
+				return totalSum;
+			}
+
+			return add;
+		}
+
+		print(smartSum(3)); // 3; 
+		print(smartSum(1, 2));  // 3;
+		print(smartSum(1, 3)(2)); // 6; 
+		print(smartSum(1, 2)(3, 4, 5)(6)(7, 10)); // 38; 
+		print(smartSum(1, 2)(true, {test: 10}, '5')('e10', '2')); // 10; 
+        
+	</script>
+</head> 	
+<body> 
+<!-- html here --> 
+</body>
+</html>
