@@ -1,0 +1,32 @@
+﻿<!DOCTYPE html>
+<html lang="en"> 
+<head> 
+	<meta charset="utf-8">
+	<title>Classwork - task1 (lesson5)</title> 
+	<script>
+		//'use strict';
+
+		function print(val) {
+			document.write(val);
+			document.write('<br>');
+		}
+
+		function printNumber() {
+			var count = 0;
+
+			var timerId = setInterval(function() {
+				print(++count);
+				if (count == 20) {
+					clearInterval(timerId);
+				}
+			}, 100);
+		}
+
+		printNumber();
+	
+	</script>
+</head> 	
+<body> 
+<!-- html here --> 
+</body>
+</html>

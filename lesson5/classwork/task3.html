@@ -1,0 +1,49 @@
+﻿<!DOCTYPE html>
+<html lang="en"> 
+<head> 
+	<meta charset="utf-8">
+	<title>Classwork - task3 (lesson5)</title> 
+	<script>
+		//'use strict';
+
+		function print(val) {
+			document.write(val);
+			document.write('<br>');
+		}
+
+		function detectType(arg) {
+			try {
+				if (arguments.length > 1) {
+					throw new Error("Too many arguments.");
+				}
+			}
+			catch(err) {
+				print("Error: " + err.message);
+				return -1;
+			}
+
+			var type = typeof arg;
+			if (type === 'object' && arg === null) {
+				return 'null';
+			}
+			if (type === 'object' && Array.isArray(arg)) {
+				return 'array';
+			}
+			return type;
+		}
+
+		print(detectType(1));
+		print(detectType(''));
+		print(detectType({}));
+		print(detectType([]));
+		print(detectType());
+		print(detectType(null));
+		print(detectType(function(){}));
+		print(detectType(1,2,3));
+        
+	</script>
+</head> 	
+<body> 
+<!-- html here --> 
+</body>
+</html>
