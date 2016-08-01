@@ -1,0 +1,52 @@
+﻿<!DOCTYPE html>
+<html lang="en"> 
+<head> 
+	<meta charset="utf-8">
+	<title>Homework - task3 (lesson6)</title>
+	<script>
+		//'use strict';
+		window.onload = function() {
+
+
+			function closest(css) {
+				var elem = this;
+
+				while(elem) {
+					if(elem.matches(css)) {
+						return elem;
+					}
+					else {
+						elem = elem.parentElement;
+					}
+				}
+				return null;
+			}
+
+			var p = document.getElementsByTagName('p')[0];
+
+			// Test compare
+			alert(p.closest('p') === closest.call(p, 'p'));
+			alert(p.closest('div.botton') === closest.call(p, 'div.botton'));
+			alert(p.closest('div p') === closest.call(p, 'div p'));
+			alert(p.closest('div div.middle') === closest.call(p, 'div div.middle'));
+			alert(p.closest('div#top') === closest.call(p, 'div#top'));
+
+			// Set polyfill
+			if (!Element.prototype.closest) {
+				Element.prototype.closest = closest;
+			}
+		};
+
+
+	</script>
+</head> 	
+<body>
+	<div id="top">
+		<div class="middle">
+			<div class="bottom">
+				<p></p>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

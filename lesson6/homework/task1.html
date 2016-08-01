@@ -1,0 +1,71 @@
+﻿<!DOCTYPE html>
+<html lang="en"> 
+<head> 
+	<meta charset="utf-8">
+	<title>Homework - task1 (lesson6)</title>
+	<script>
+		//'use strict';
+
+		window.onload = function() {
+
+			var elementsLi = document.getElementsByTagName('li');
+			//alert(elementsLi.length);
+
+			var resultElem = document.getElementById("result");
+			resultElem.innerHTML += '<b>Results:</b><br>';
+
+			for (var i = 0; i < elementsLi.length; i++) {
+				var textAtLi = elementsLi[i].firstChild.textContent.split("\n")[0];
+				var nestedLiElems = elementsLi[i].getElementsByTagName('li').length;
+				var showText = ('#' + (i + 1) + ' li: ' + textAtLi + ' (' + nestedLiElems + ')<br>');
+				resultElem.innerHTML += showText;
+			}
+
+		}
+        
+	</script>
+</head> 	
+<body>
+	<ul>
+		<li>Животные
+			<ul>
+				<li>Млекопитающие
+					<ul>
+						<li>Коровы</li>
+						<li>Ослы</li>
+						<li>Собаки</li>
+						<li>Тигры</li>
+					</ul>
+				</li>
+				<li>Другие
+					<ul>
+						<li>Змеи</li>
+						<li>Птицы</li>
+						<li>Ящерицы</li>
+					</ul>
+				</li>
+			</ul>
+		</li>
+		<li>Рыбы
+			<ul>
+				<li>Аквариумные
+					<ul>
+						<li>Гуппи</li>
+						<li>Скалярии</li>
+					</ul>
+
+				</li>
+				<li>Морские
+					<ul>
+						<li>Морская форель</li>
+					</ul>
+				</li>
+			</ul>
+		</li>
+	</ul>
+
+	<div>
+		<p id="result"></p>
+	</div>
+</body>
+</html>

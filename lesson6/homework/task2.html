@@ -1,0 +1,44 @@
+﻿<!DOCTYPE html>
+<html lang="en"> 
+<head> 
+	<meta charset="utf-8">
+	<title>Homework - task2 (lesson6)</title>
+	<script>
+		//'use strict';
+
+		window.onload = function() {
+
+			var elem = document.createElement('div');
+			elem.innerHTML = '<b>Новый элемент</b>';
+
+			function insertAfter(elem, refElem) {
+				var parent = refElem.parentElement;
+
+				if (refElem.nextSibling) {
+					parent.insertBefore(elem, refElem.nextSibling);
+				}
+				else {
+					parent.appendChild(elem);
+				}
+			}
+
+
+			var body = document.body;
+
+			// вставить elem после первого элемента
+			insertAfter(elem, body.firstChild); // <--- должно работать
+
+
+			var elem2 = elem.cloneNode(true);
+			// вставить elem за последним элементом
+			insertAfter(elem2, body.lastChild); // <--- должно работать
+
+		}
+        
+	</script>
+</head> 	
+<body>
+	<div>Это</div>
+	<div>Элементы</div>
+</body>
+</html>
