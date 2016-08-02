@@ -1,0 +1,66 @@
+﻿<!DOCTYPE html>
+<html lang="en"> 
+<head> 
+	<meta charset="utf-8">
+	<title>Classwork - task1 (lesson7)</title>
+	<style>
+		div {
+			height: 100px;
+			width: 200px;
+			border: 1px solid black;
+			text-align: center;
+			margin: 20px;
+		}
+
+		span {
+			color: red;
+		}
+	</style>
+	<script>
+		'use strict';
+		window.onload = function() {
+
+			var span = document.createElement('span');
+			span.innerHTML = "Test";
+
+			var insertType = ["beforeBegin", "afterBegin", "beforeEnd", "afterEnd"];
+			var travelElements = document.getElementsByTagName('div');
+			//var travelElements = document.body.children;
+			//var travelElements = document.body.getElementsByTagName('*'); //
+			var selType = 0;
+			var selElem = 0;
+
+			var timerId = setInterval(function() {
+				if (document.getElementsByTagName('span')[0]) {
+					document.getElementsByTagName('span')[0].remove();
+				}
+
+				var elem = travelElements[selElem];
+				elem.insertAdjacentHTML(insertType[selType], span.outerHTML);
+
+				if(++selType == insertType.length) {
+					selType = 0;
+					if(++selElem == travelElements.length) {
+						clearInterval(timerId);
+					}
+				}
+
+			}, 500); // 100ms too fast
+
+		}
+	</script>
+</head> 	
+<body>
+	<div>
+		<b>div1</b>
+	</div>
+	<hr />
+	<div>
+		<b>div2</b>
+	</div>
+	<hr />
+	<div>
+		<b>div3</b>
+	</div>
+</body>
+</html>
