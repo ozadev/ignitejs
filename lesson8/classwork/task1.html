@@ -1,0 +1,56 @@
+﻿<!DOCTYPE html>
+<html lang="en"> 
+<head> 
+	<meta charset="utf-8">
+	<title>Classwork - task1 (lesson8)</title>
+	<style>
+		div {
+			height: 100px;
+			width: 100px;
+			float: left;
+			background-color: green;
+		}
+
+		span {
+			position: absolute;
+			top: 50px;
+			left: 550px;
+		}
+	</style>
+	<script>
+		'use strict';
+
+		function selectDiv() {
+
+			var divElems = document.querySelectorAll('div');
+			var currDiv = divElems[0];
+
+			// Check if 'red' div already exist. Then clear it and select next.
+			for (var i = 0; i < divElems.length; i++) {
+				if (divElems[i].style.backgroundColor == 'red') {
+					divElems[i].style.backgroundColor = '';
+					if (i != divElems.length - 1) {
+						currDiv = divElems[i + 1];
+					}
+					break;
+				}
+			}
+
+			currDiv.style.backgroundColor = 'red';
+
+		}
+
+
+	</script>
+</head>
+<body>
+	<div></div>
+	<div></div>
+	<div></div>
+	<div></div>
+	<div></div>
+	<span>
+		<input type="button" value="Make red" onclick="selectDiv()">
+	</span>
+</body>
+</html>
