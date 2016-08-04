@@ -1,0 +1,98 @@
+﻿<!DOCTYPE html>
+<html lang="en"> 
+<head> 
+	<meta charset="utf-8">
+	<title>Homework - task3 (lesson8)</title>
+	<style>
+		#result {
+			border: 2px solid black;
+			height: 20px;
+			width: 350px;
+			margin-top: 20px;
+		}
+	</style>
+	<script>
+		'use strict';
+
+		function calcInputCheck(e) {
+
+			var target = event.target;
+			if(target.className !== 'btn') {
+				return;
+			}
+
+			var numA = document.getElementById('numberA');
+			var numB = document.getElementById('numberB');
+
+			numA.style.backgroundColor = '';
+			numB.style.backgroundColor = '';
+
+
+			if(/^-?\d+\.?\d*$/.test(numA.value) === false) {
+				numA.style.backgroundColor = "indianred";
+			}
+			if(/^-?\d+\.?\d*$/.test(numB.value) === false) {
+				numB.style.backgroundColor = "indianred";
+			}
+
+		}
+
+		function sum() {
+			var numA = document.getElementById('numberA');
+			var numB = document.getElementById('numberB');
+
+			var result = parseInt(numA.value) + parseInt(numB.value);
+
+			document.getElementById('result').innerHTML = result.toString();
+		}
+
+		function sub() {
+			var numA = document.getElementById('numberA');
+			var numB = document.getElementById('numberB');
+
+			var result = parseInt(numA.value) - parseInt(numB.value);
+
+			document.getElementById('result').innerHTML = result.toString();
+		}
+
+		function mult() {
+			var numA = document.getElementById('numberA');
+			var numB = document.getElementById('numberB');
+
+			var result = parseInt(numA.value) * parseInt(numB.value);
+
+			document.getElementById('result').innerHTML = result.toString();
+		}
+
+		function div() {
+			var numA = document.getElementById('numberA');
+			var numB = document.getElementById('numberB');
+
+			var result = parseInt(numA.value) / parseInt(numB.value);
+			if(result === Infinity) {
+				alert("Infinity: Division by 0!")
+			}
+
+			document.getElementById('result').innerHTML = result.toString();
+		}
+
+		// DOM Level 2 events
+		window.addEventListener('load', function() {
+
+			document.addEventListener('click', calcInputCheck);
+
+		});
+
+	</script>
+</head> 	
+<body>
+	<input type="text" id="numberA">
+	<input type="text" id="numberB">
+	<!-- DOM Level 0 events-->
+	<button id="add" class="btn" onclick="sum()">Add</button>
+	<button id="sub" class="btn" onclick="sub()">Sub</button>
+	<button id="mult" class="btn" onclick="mult()">Mult</button>
+	<button id="div" class="btn" onclick="div()">Div</button>
+	<div id="result"></div>
+</body>
+</html>

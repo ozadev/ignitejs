@@ -1,0 +1,104 @@
+﻿<!DOCTYPE html>
+<html lang="en"> 
+<head> 
+	<meta charset="utf-8">
+	<title>Homework - task 2 (lesson8)</title>
+	<style>
+		#test {
+			position: absolute;
+			border: 1px solid black;
+			width: 100px;
+			height: 100px;
+			top: 200px;
+			left: 200px;
+			background-color: lightblue;
+		}
+
+		.out {
+			margin-top: 50px;
+			height: 200px;
+			width: 200px;
+			position: relative;
+		}
+
+		.between {
+			height: 150px;
+			width: 150px;
+			position: absolute;
+			left: 25px;
+			top: 25px;
+		}
+
+		.inside {
+			height: 100px;
+			width: 100px;
+			position: absolute;
+			left: 25px;
+			top: 25px;
+		}
+
+	</style>
+	<script>
+		'use strict';
+
+		function setTooltip(event) {
+
+			var target = event.target;
+
+			var tooltipText = target.getAttribute('data-tooltip');
+			if (!tooltipText) {
+				return;
+			}
+
+			var tooltipBlock = document.createElement('div');
+			tooltipBlock.style = "position: absolute;" +
+							"border: 1px solid black;" +
+							"padding: 5px;" +
+							"background-color: lightblue;" +
+							"top: 200px;" +
+							"left: 200px;"
+
+			tooltipBlock.innerHTML = tooltipText;
+			tooltipBlock.id = "tooltipBlock";
+
+			document.body.appendChild(tooltipBlock);
+		}
+
+		function setTooltipCoords(event) {
+
+			var tooltipBlock = document.getElementById("tooltipBlock");
+
+			if(tooltipBlock) {
+				tooltipBlock.style.left = event.pageX + 10 + 'px';
+				tooltipBlock.style.top = event.pageY + 15 + 'px';
+			}
+
+		}
+
+		function removeTooltip(event) {
+
+			var tooltipBlock = document.getElementById("tooltipBlock");
+			tooltipBlock.remove();
+
+		}
+
+		window.onload = function() {
+
+			document.addEventListener("mouseover", setTooltip);
+			document.addEventListener("mousemove", setTooltipCoords);
+			document.addEventListener("mouseout", removeTooltip);
+
+		}
+	</script>
+</head> 	
+<body>
+	<button data-tooltip="подсказка длиннее, чем элемент" title="test" >Короткая кнопка</button>
+	<button data-tooltip="HTML<br>подсказка" class="test2">Ещё кнопка</button>
+	<br>
+	<div class="out" data-tooltip="red div" style="background-color: red">
+		<div class="between" data-tooltip="green div"  style="background-color: green">
+			<div class="inside" data-tooltip="yellow div"  style="background-color: yellow"></div>
+		</div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,67 @@
+﻿<!DOCTYPE html>
+<html lang="en"> 
+<head> 
+	<meta charset="utf-8">
+	<title>Homework - task1 (lesson8)</title>
+	<style>
+		div {
+			color: indianred;
+
+		}
+
+	</style>
+	<script>
+		'use strict';
+
+		function formCheck(e) {
+
+			var userLogin = document.getElementById('login');
+			var userPsw = document.getElementById('psw');
+			var userTel = document.getElementById('tel');
+
+			userLogin.style.backgroundColor = '';
+			userPsw.style.backgroundColor = '';
+			userTel.style.backgroundColor = '';
+
+			var valid = true;
+
+			if(userLogin.value.match(/\d/) || userLogin.value === '') {
+				userLogin.style.backgroundColor = "indianred";
+				valid = false;
+			}
+			if(userPsw.value.match(/\$/) || userPsw.value === '') {
+				userPsw.style.backgroundColor = "indianred";
+				valid = false;
+			}
+			if(userTel.value.match(/\D/) || userTel.value === '') {
+				userTel.style.backgroundColor = "indianred";
+				valid = false;
+			}
+
+			if(!valid) {
+				e.preventDefault();
+			}
+		}
+
+//		window.addEventListener("load", function() {
+//			document.getElementById("btm").addEventListener("click", formCheck);
+//		});
+
+
+	</script>
+</head> 	
+<body> 
+	<form action="/" method="post">
+		<label>Логин: </label>
+		<input type="text" id="login">
+		<br>
+		<label>Пароль: </label>
+		<input type="text" id="psw">
+		<br>
+		<label>Телефон: </label>
+		<input type="text" id="tel">
+		<br>
+		<button id="btm" type="submit" onclick="formCheck()">Отправить</button>
+	</form>
+</body>
+</html>
