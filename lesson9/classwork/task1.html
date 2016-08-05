@@ -1,0 +1,36 @@
+﻿<!DOCTYPE html>
+<html lang="en"> 
+<head> 
+	<meta charset="utf-8">
+	<title>Classwork - task1 (lesson9)</title>
+	<style>
+	</style>
+	<script>
+		'use strict';
+
+		function keyCombinations(event) {
+
+			var text = document.querySelector('div');
+
+			if(event.ctrlKey === true && event.keyCode == 65) {
+				text.innerHTML += 'Данные выбраны<br>';
+			}
+			if(event.ctrlKey === true && event.keyCode == 83) {
+				text.innerHTML += 'Данные сохранены<br>';
+			}
+
+			event.preventDefault();
+		}
+
+		window.onload = function() {
+
+			document.addEventListener('keydown', keyCombinations);
+
+		}
+
+	</script>
+</head>
+<body>
+	<div></div>
+</body>
+</html>
