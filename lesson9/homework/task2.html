@@ -1,0 +1,99 @@
+﻿<!DOCTYPE html>
+<html lang="en"> 
+<head> 
+	<meta charset="utf-8">
+	<title>Homework - task2 (lesson9)</title>
+	<style>
+		.discount {
+			background-color: red;
+			width: 100px;
+			height: 100px;
+			border-radius: 50%;
+			position: absolute;
+			left: 50px;
+			top: 50px;
+			text-align: center;
+			vertical-align: middle;
+			line-height: 100px;
+			color: white;
+			font-size: 20px;
+			font-weight: 700;
+		}
+
+		.defender {
+			//background-color: yellow;
+			top: 200px;
+			left: 200px;
+			width: 200px;
+			height: 200px;
+			position: fixed;
+
+		}
+	</style>
+	<script>
+		'use strict';
+
+		function moveAway(event) {
+			var target = event.target;
+
+			// If accidentally select internal ("discount") element
+			if(target.classList.contains('discount')) {
+				target = target.parentElement;
+			}
+
+			var targetCoords = target.getBoundingClientRect();
+
+			// Set coordinates start at block center
+			var x = event.offsetX - target.offsetWidth / 2;
+			var y = event.offsetY - target.offsetHeight / 2;
+
+			// Scalable shift values
+			var coef = 0.15;
+			var xShift = x * coef;
+			var yShift = y * coef;
+
+			target.style.top = targetCoords.top - yShift + 'px';
+			target.style.left = targetCoords.left - xShift + 'px';
+
+			// If out of screen
+			var docWidth = document.documentElement.clientWidth;
+			var docHeight = document.documentElement.clientHeight;
+			var childItem = target.firstElementChild;
+			var childCoords = childItem.getBoundingClientRect();
+
+			var widthDiff = (target.offsetWidth - childItem.offsetWidth) / 2;
+			var heightDiff = (target.offsetHeight - childItem.offsetHeight) / 2;
+
+			if(childCoords.right < 0) {
+				target.style.left = docWidth - childItem.offsetWidth - widthDiff + 'px';
+			}
+			if(childCoords.left > docWidth) {
+				target.style.left = 0 - widthDiff + 'px';
+			}
+			if(childCoords.bottom < 0) {
+				target.style.top = docHeight - childItem.offsetHeight - heightDiff + 'px';
+			}
+			if(childCoords.top > docHeight) {
+				target.style.top = 0 - heightDiff + 'px';
+			}
+
+		}
+
+
+		window.onload = function() {
+
+			var defender = document.querySelector('.defender');
+			defender.addEventListener('mousemove', moveAway);
+
+		}
+
+
+
+	</script>
+</head> 	
+<body>
+	<div class="defender">
+		<div class="discount">Скидка</div>
+	</div>
+</body>
+</html>

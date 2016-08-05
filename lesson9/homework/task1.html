@@ -1,0 +1,58 @@
+﻿<!DOCTYPE html>
+<html lang="en"> 
+<head> 
+	<meta charset="utf-8">
+	<title>Homework - task1 (lesson9)</title>
+	<style>
+		li {
+			//border: 1px solid black;
+			color: darkslategrey;
+		}
+
+		div {
+			width: 200px;
+			//margin: auto;
+		}
+
+		.highlight {
+			//background-color: grey;
+			color: black;
+			font-weight: 600;
+		}
+	</style>
+	<script>
+		'use strict';
+
+		function makeHighlight(event) {
+			var target = event.target;
+
+			if(target.tagName !== 'LI') {
+				return;
+			}
+
+			target.classList.toggle('highlight');
+		}
+
+		window.onload = function() {
+
+			document.addEventListener('click', makeHighlight);
+
+		}
+
+	</script>
+</head> 	
+<body>
+	<div>
+		<ul>
+			<li>Test1</li>
+			<li>Test2</li>
+			<li>Test3</li>
+			<li>Test4</li>
+			<li>Test5</li>
+			<li>Test6</li>
+			<li>Test7</li>
+			<li>Test8</li>
+		</ul>
+	</div>
+</body>
+</html>

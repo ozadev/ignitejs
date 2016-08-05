@@ -1,0 +1,48 @@
+﻿<!DOCTYPE html>
+<html lang="en"> 
+<head> 
+	<meta charset="utf-8">
+	<title>Homework - task3 (lesson9)</title>
+	<style>
+		div {
+			background-color: dodgerblue;
+			border: 2px solid black;
+			top: 200px;
+			left: 200px;
+			width: 50px;
+			height: 50px;
+			position: absolute;
+		}
+	</style>
+	<script>
+		'use strict';
+
+		function setElemCoords(event) {
+			var elem = document.querySelector("div");
+
+			var x = parseInt(document.querySelector('#getX').value);
+			var y = parseInt(document.querySelector('#getY').value);
+
+			if(isNaN(x) || isNaN(y)) {
+				alert("Invalid coordinate value");
+				event.preventDefault();
+				return;
+			}
+
+			elem.style.left = x + 'px';
+			elem.style.top = y + 'px';
+		}
+
+//		window.onload = function() {
+//
+//		}
+
+	</script>
+</head> 	
+<body>
+	<label>Координата X: </label><input id="getX" type="text" value='200'><br>
+	<label>Координата Y: </label><input id="getY" type="text" value='200'><br>
+	<button onclick="setElemCoords()">Применить</button>
+	<div></div>
+</body>
+</html>
