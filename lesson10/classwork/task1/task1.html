@@ -1,0 +1,77 @@
+﻿<!DOCTYPE html>
+<html lang="en"> 
+<head> 
+	<meta charset="utf-8">
+	<title>Classwork - task1 (lesson10)</title>
+	<style>
+	</style>
+	<script>
+		'use strict';
+		// Картинка завантажується (просто додається элемент image з потрібним src) через 1 секунду після натиснення кнопки.
+		// В цьому випадку ігноруються отримані данні xhr.response. За рахунок XMLHttpRequest було тільки перевірено наявність картинки по вказаному url.
+		function loadImg() {
+
+			setTimeout(function() {
+
+				var imgUrl = 'img.jpg';
+
+				var xhr = new XMLHttpRequest();
+
+				xhr.open("GET", imgUrl, true);
+
+				xhr.onreadystatechange = function () {
+					if (xhr.readyState == 4) {
+						if (xhr.status == 200) {
+
+							var img = document.createElement('img');
+							img.setAttribute('src', imgUrl);
+							document.querySelector("#content-img").appendChild(img);
+
+						}
+					}
+				};
+
+				xhr.send();
+
+			}, 1000);
+		}
+
+		// Завантаження картинки через XMLHttpRequest
+		// Суть реалізації взято з: http://www.html5gamedevs.com/topic/280-can-you-get-an-image-out-of-xhrresponse/
+		function loadImgReal() {
+
+			setTimeout(function() {
+				var xhr = new XMLHttpRequest();
+				xhr.open("GET", 'img.jpg');
+
+				xhr.responseType = "blob";
+
+				xhr.onreadystatechange = function () {
+					if (xhr.readyState == 4) {
+						if (xhr.status == 200) {
+							var img = document.createElement('img');
+							var imgObj = window.URL.createObjectURL(xhr.response);
+							img.src = imgObj;
+							document.getElementById('content-img').appendChild(img);
+							//window.URL.revokeObjectURL(img.src);
+						}
+					}
+				};
+
+				xhr.send();
+			}, 1000);
+		}
+
+
+		// Варіант коли картинка завантажується (через секунду) після завантаження сторінки. (не до кінця зрозуміла умова)
+		//window.onload = loadImg;
+		//window.onload = loadImgReal;
+
+
+	</script>
+</head>
+<body>
+	<button id="btn-load-img" onclick="loadImg()">Загрузить картинку</button>
+	<div id="content-img"></div>
+</body>
+</html>
