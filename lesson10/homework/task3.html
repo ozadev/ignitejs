@@ -1,0 +1,59 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>Homework - task3 (lesson10)</title>
+	<style>
+		#result {
+			border: 1px solid black;
+			width: 200px;
+			height: 100px;
+			margin: 10px;
+			padding: 5px;
+		}
+	</style>
+	<script>
+		'use strict';
+
+		function getCalc(event) {
+
+			var numA = document.getElementById('valueA').value;
+			var numB = document.getElementById('valueB').value;
+
+			if (numA.match(/\D/) || numB.match(/\D/) || numA === '' || numB === '') {
+				alert("Invalid values");
+				return;
+			}
+
+			var xhr = new XMLHttpRequest();
+
+			// працює для сервера (в папці файл server.js) на nodejs
+			xhr.open('POST', 'calc.js', true);
+			//xhr.open('POST', 'CalcHandler.ashx', true);
+
+			xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+			xhr.send('a=' + numA + '&b=' + numB);
+
+			xhr.onreadystatechange = function () {
+				if (xhr.readyState == 4) {
+					if (xhr.status == 200) {
+						document.getElementById("result").innerHTML += xhr.responseText;
+					}
+				}
+			};
+
+			xhr.send();
+		}
+
+
+	</script>
+</head>
+<body>
+<label>Число А: </label>
+<input type="text" id="valueA"><br>
+<label>Число B: </label>
+<input type="text" id="valueB"><br>
+<button onclick="getCalc()">Отримати результат</button>
+<div id="result"></div>
+</body>
+</html>

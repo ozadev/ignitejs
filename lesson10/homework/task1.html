@@ -1,0 +1,61 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>Homework - task1 (lesson10)</title>
+	<style>
+		#loadSection {
+			margin: auto;
+			height: 100px;
+			width: 200px;
+		}
+	</style>
+	<script>
+		'use strict';
+
+		function loadIndex(event) {
+
+			var target = event.target;
+
+			var loadAddr = target.getAttribute('data-load');
+
+			if(!loadAddr) {
+				return;
+			}
+
+			var xhr = new XMLHttpRequest();
+
+			xhr.open("GET", loadAddr, true);
+
+			xhr.onreadystatechange = function () {
+				if (xhr.readyState == 4) { // если получен ответ
+					if (xhr.status == 200) { // и если статус код ответа 200
+						//Можна ли вставлять полностью код страницы, или нужно вытянуть только содержимое body?
+						document.getElementById("loadSection").innerHTML += xhr.responseText;
+					}
+				}
+			};
+
+
+
+			xhr.send();
+		}
+
+		function clearContent() {
+			document.getElementById("loadSection").innerHTML = '';
+		}
+
+		window.onload = function() {
+
+			document.addEventListener('click', loadIndex);
+		}
+
+	</script>
+</head>
+<body>
+	<button data-load="index1.html">Загрузить страницу №1</button>
+	<button data-load="index2.html">Загрузить страницу №2</button>
+	<button onclick="clearContent()">Очистить</button>
+	<div id="loadSection"></div>
+</body>
+</html>
