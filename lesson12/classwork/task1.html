@@ -1,0 +1,59 @@
+﻿<!DOCTYPE html>
+<html lang="en" ng-app="task1App">
+<head> 
+	<meta charset="utf-8">
+	<title>Classwork - task1 (lesson12)</title>
+	<style>
+	</style>
+	<link href="../../libraries/bootstrap.css" rel="stylesheet" />
+	<link href="../../libraries/bootstrap-theme.css" rel="stylesheet" />
+	<script src="../../libraries/angular.js"></script>
+	<script>
+		'use strict';
+
+		angular.module('task1App', [])
+		.controller('mainCtrl', function($scope) {
+			$scope.items = [
+				{ name: "B Item", price: 10.9, category: "Category 1", count: 10, tax: 1.12, expiration: 10 },
+				{ name: "A Item", price: 1.1, category: "Category 1", count: 8, tax: 0.55, expiration: 12 },
+				{ name: "D Item", price: 2.6, category: "Category 2", count: 7, tax: 0.22, expiration: 5 },
+				{ name: "C Item", price: 17.5, category: "Category 2", count: 33, tax: 2.77, expiration: 10 }];
+		});
+
+	</script>
+</head>
+<body ng-controller="mainCtrl">
+<h2>Вариант #1</h2>
+<table class="table">
+	<thead>
+	<tr>
+		<th>name</th>
+		<th>price</th>
+		<th>category</th>
+		<th>count</th>
+		<th>tax</th>
+		<th>expiration</th>
+	</tr>
+	</thead>
+	<tr ng-repeat="item in items">
+		<td>{{item.name}}</td>
+		<td>{{item.price}}</td>
+		<td>{{item.category}}</td>
+		<td>{{item.count}}</td>
+		<td>{{item.tax}}</td>
+		<td>{{item.expiration}}</td>
+	</tr>
+</table>
+<h2>Вариант #2 (измененное расположение свойств при выводе)</h2>
+<table class="table">
+	<thead>
+	<tr>
+		<th ng-repeat="(key, value) in items[0]">{{key}}</th>
+	</tr>
+	</thead>
+	<tr ng-repeat="item in items">
+		<td ng-repeat="value in item">{{value}}</td>
+	</tr>
+</table>
+</body>
+</html>

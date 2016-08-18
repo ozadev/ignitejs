@@ -1,0 +1,101 @@
+﻿<!DOCTYPE html>
+<html lang="en" ng-app="todoListApp">
+<head> 
+	<meta charset="utf-8">
+	<title>Homework - task1 (lesson11)</title>
+	<style>
+	</style>
+	<link href="../../libraries/bootstrap.css" rel="stylesheet" />
+	<link href="../../libraries/bootstrap-theme.css" rel="stylesheet" />
+	<script src="../../libraries/angular.js"></script>
+	<script>
+		'use strict';
+
+		var model = [
+			{name: 'Купить что-то', description: 'Срочно купить что-то в Ашане', date: new Date(), status: true},
+			{name: 'Продать что-то', description: 'Срочно продать что-то на рынке', date: new Date(), status: false},
+		];
+
+		var todoListApp = new angular.module('todoListApp', []);
+
+		todoListApp.controller('todoListCtrl', function($scope) {
+			$scope.list = model;
+
+			$scope.statusText = function(status) {
+				return status ? "Да" : "Нет";
+			};
+
+			$scope.taskStatusStyle = function(status) {
+				return status ? "color: grey; text-decoration: line-through" : "";
+			};
+
+			$scope.showDate = function(date) {
+				return (date.getMonth() + 1) + '/' + date.getDate() + '/' + date.getFullYear();
+			};
+
+			$scope.addTask = function() {
+				var date = new Date($scope.newTaskDate);
+				if (isNaN(date)) {
+					date = new Date();
+				}
+
+				$scope.list.push({
+					name: $scope.newTaskName,
+					description: $scope.newTaskDescription,
+					date: date,
+					status: $scope.newTaskStatus
+				});
+				$scope.newTaskName = '';
+				$scope.newTaskDescription = '';
+				$scope.newTaskDate = '';
+				$scope.newTaskStatus = '';
+			};
+
+		});
+
+	</script>
+</head>
+<body>
+
+<div class="container" ng-controller="todoListCtrl">
+
+	<h3>ToDo List</h3>
+
+	<table class="table">
+		<thead>
+		<tr>
+			<th>Name</th>
+			<th>Description</th>
+			<th>Date</th>
+			<th>Completed</th>
+		</tr>
+		</thead>
+		<tr ng-repeat="task in list" style="{{taskStatusStyle(task.status)}}">
+			<td>{{task.name}}</td>
+			<td>{{task.description}}</td>
+			<td>{{showDate(task.date)}}</td>
+			<td><input type="checkbox" ng-model="task.status"> {{statusText(task.status)}}</td>
+		</tr>
+	</table>
+	<div>
+		<div class="form-group">
+			<label>Name</label>
+			<input class="form-control" type="text" ng-model="newTaskName">
+		</div>
+		<div class="form-group">
+			<label>Due Date</label>
+			<input class="form-control" type="text" ng-model="newTaskDate">
+		</div>
+		<div class="form-group">
+			<label>Description</label>
+			<textarea class="form-control" ng-model="newTaskDescription"></textarea>
+		</div>
+		<div class="form-group">
+			<label>Completed</label><br>
+			<input type="checkbox" ng-model="newTaskStatus">
+		</div>
+		<button class="btn btn-default" ng-click="addTask()">Add</button>
+	</div>
+</div>
+</body>
+</html>

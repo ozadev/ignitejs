@@ -1,0 +1,25 @@
+﻿<!DOCTYPE html>
+<html lang="en" ng-app="task3App">
+<head> 
+	<meta charset="utf-8">
+	<title>Classwork - task3 (lesson11)</title>
+	<style>
+	</style>
+	<link href="../../libraries/bootstrap.css" rel="stylesheet" />
+	<script src="../../libraries/angular.js"></script>
+	<script>
+		'use strict';
+
+		var task3App = new angular.module('task3App', []);
+
+		task3App.controller('mainCtrl', function() {});
+
+	</script>
+</head>
+<body ng-controller="mainCtrl">
+	<div class="input-group" style="width: 300px">
+		<input class="form-control" type="text" ng-model="text">
+	</div>
+	<h4>{{text}}</h4>
+</body>
+</html>

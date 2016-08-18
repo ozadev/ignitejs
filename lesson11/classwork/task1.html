@@ -1,0 +1,27 @@
+﻿<!DOCTYPE html>
+<html lang="en" ng-app="helloWorldApp">
+<head> 
+	<meta charset="utf-8">
+	<title>Classwork - task1 (lesson11)</title>
+	<style>
+	</style>
+	<link href="../../libraries/bootstrap.css" rel="stylesheet" />
+	<script src="../../libraries/angular.js"></script>
+	<script>
+		'use strict';
+
+		var model = {message: 'Hello World'};
+
+		var helloWorldApp = new angular.module("helloWorldApp", []);
+
+		helloWorldApp.controller("helloWorldCtrl", function($scope) {
+			$scope.message = model.message;
+		});
+
+
+	</script>
+</head>
+<body ng-controller="helloWorldCtrl">
+	{{message}}
+</body>
+</html>

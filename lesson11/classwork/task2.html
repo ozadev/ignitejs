@@ -1,0 +1,34 @@
+﻿<!DOCTYPE html>
+<html lang="en" ng-app="task2App">
+<head> 
+	<meta charset="utf-8">
+	<title>Classwork - task2 (lesson11)</title>
+	<style>
+	</style>
+	<link href="../../libraries/bootstrap.css" rel="stylesheet" />
+	<script src="../../libraries/angular.js"></script>
+	<script>
+		'use strict';
+
+		var task2App = new angular.module('task2App', []);
+
+		task2App.controller('mainCtrl', function($scope) {
+
+			$scope.addText = function() {
+				$scope.message = $scope.text;
+				$scope.text = '';
+			};
+		});
+
+	</script>
+</head>
+<body ng-controller="mainCtrl">
+	<div class="input-group" style="width: 300px">
+		<input class="form-control" type="text" ng-model="text">
+		<span class="input-group-btn">
+			<button class="btn btn-default" ng-click="addText()">Add text</button>
+		</span>
+	</div>
+	<h4>{{message}}</h4>
+</body>
+</html>

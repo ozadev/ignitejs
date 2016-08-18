@@ -1,0 +1,105 @@
+﻿<!DOCTYPE html>
+<html lang="en" ng-app="calcApp">
+<head> 
+	<meta charset="utf-8">
+	<title>Homework - task1 (lesson12)</title>
+	<style>
+		body > div {
+			width: 300px;
+			margin: 0 auto;
+		}
+
+		.form-group {
+			width: 200px;
+		}
+
+		.result {
+			width: 200px;
+			height: 50px;
+			border-radius: 5px;
+			border: 1px solid cornflowerblue;
+		}
+
+	</style>
+	<link href="../../libraries/bootstrap.css" rel="stylesheet" />
+	<link href="../../libraries/bootstrap-theme.css" rel="stylesheet" />
+	<script src="../../libraries/angular.js"></script>
+	<script>
+		'use strict';
+
+		var calcApp = angular.module('calcApp', []);
+
+		calcApp.controller('calcCtrl', ['$scope', function($scope) {
+
+			$scope.calcAdd = function() {
+				var numA = parseInt($scope.numberA);
+				var numB = parseInt($scope.numberB);
+				if (isNaN(numA) || isNaN(numB)) {
+					$scope.result = "Error: Invalid input values";
+				}
+				else {
+					$scope.result = numA + numB;
+				}
+			}
+
+			$scope.calcSub = function() {
+				var numA = parseInt($scope.numberA);
+				var numB = parseInt($scope.numberB);
+				if (isNaN(numA) || isNaN(numB)) {
+					$scope.result = "Error: Invalid input values";
+				}
+				else {
+					$scope.result = numA - numB;
+				}
+			}
+
+			$scope.calcMult = function() {
+				var numA = parseInt($scope.numberA);
+				var numB = parseInt($scope.numberB);
+				if (isNaN(numA) || isNaN(numB)) {
+					$scope.result = "Error: Invalid input values";
+				}
+				else {
+					$scope.result = numA * numB;
+				}
+			}
+
+			$scope.calcDiv = function() {
+				var numA = parseInt($scope.numberA);
+				var numB = parseInt($scope.numberB);
+				if (isNaN(numA) || isNaN(numB)) {
+					$scope.result = "Error: Invalid input values";
+				}
+				else {
+					if (numB == 0)
+						$scope.result = "Error: division by zero";
+					else
+						$scope.result = numA / numB;
+				}
+			}
+		}]);
+
+	</script>
+</head>
+<body ng-controller="calcCtrl">
+	<div>
+		<div class="form-group">
+			<label>Number A</label><br>
+			<input class="form-control" type="text" ng-model="numberA">
+		</div>
+		<div class="form-group">
+			<label>Number B</label><br>
+			<input class="form-control" type="text" ng-model="numberB">
+		</div>
+		<button class="btn" ng-click="calcAdd()">+</button>
+		<button class="btn" ng-click="calcSub()">-</button>
+		<button class="btn" ng-click="calcMult()">*</button>
+		<button class="btn" ng-click="calcDiv()">/</button>
+		<br><br>
+		<h4>Result:</h4>
+		<div class="result">
+			<h4 ng-bind="result"></h4>
+		</div>
+	</div>
+</body>
+</html>
