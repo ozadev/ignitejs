@@ -1,0 +1,46 @@
+﻿<!DOCTYPE html>
+<html lang="en" ng-app="task3App">
+<head> 
+	<meta charset="utf-8">
+	<title>Classwork - task3 (lesson14)</title>
+	<style>
+	</style>
+	<link href="../../libraries/bootstrap.css" rel="stylesheet" />
+	<link href="../../libraries/bootstrap-theme.css" rel="stylesheet" />
+	<script src="../../libraries/angular.js"></script>
+	<script>
+		'use strict';
+
+		var app = new angular.module('task3App', []);
+
+		app.controller('mainCtrl', ['$scope', '$http', function($scope, $http) {
+			$http.get('data/data.json').then(dataAsTable, dataError);
+
+			function dataAsTable (response) {
+				alert('Success download, status: ' + response.statusText);
+				$scope.items = response.data;
+			}
+
+			function dataError (response) {
+				alert('Error, status: ' + response.statusText);
+			}
+
+		}]);
+
+	</script>
+</head>
+<body ng-controller="mainCtrl">
+	<table class="table">
+		<thead>
+		<tr>
+			<th>name</th>
+			<th>price</th>
+		</tr>
+		</thead>
+		<tr ng-repeat="item in items">
+			<td>{{item.name}}</td>
+			<td>{{item.price}}</td>
+		</tr>
+	</table>
+</body>
+</html>

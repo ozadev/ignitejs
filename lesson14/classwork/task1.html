@@ -1,0 +1,35 @@
+﻿<!DOCTYPE html>
+<html lang="en" ng-app="task1App">
+<head>
+	<meta charset="utf-8">
+	<title>Classwork - task1 (lesson14)</title>
+	<style>
+	</style>
+	<link href="../../libraries/bootstrap.css" rel="stylesheet" />
+	<link href="../../libraries/bootstrap-theme.css" rel="stylesheet" />
+	<script src="../../libraries/angular.js"></script>
+	<script>
+		'use strict';
+
+		var app = new angular.module('task1App', []);
+
+		app.factory('clickCounterService', function () {
+			var counter = 0;
+			return function () {
+				console.log('Click #' + ++counter);
+				return;
+			}
+		});
+
+		app.controller('mainCtrl', ['$scope', 'clickCounterService', function($scope, clickCounterService) {
+			$scope.clickHandler = function() {
+				clickCounterService();
+			};
+		}]);
+
+	</script>
+</head>
+<body ng-controller="mainCtrl">
+<button class="btn btn-default" ng-click="clickHandler()">Click me!</button>
+</body>
+</html>

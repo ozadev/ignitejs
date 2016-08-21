@@ -1,0 +1,165 @@
+﻿<!DOCTYPE html>
+<html lang="en" ng-app="task1App">
+<head> 
+	<meta charset="utf-8">
+	<title>Homework - task1 (lesson14)</title>
+	<style>
+		.calc {
+			width: 400px;
+			margin: 20px auto;
+			text-align: center;
+		}
+
+		.btn-block {
+			padding: 10px;
+		}
+
+		.result {
+			height: 100px;
+		}
+
+		.result > div {
+			display: inline-block;
+			width: 33%;
+			height: 100%;
+			border: 1px solid black;
+			background-color: lightsteelblue;
+			vertical-align: top;
+			text-align: center;
+		}
+
+		form .ng-valid.ng-dirty {
+			background-color: lightgreen;
+		}
+
+		form .ng-invalid.ng-dirty {
+			background-color: lightcoral;
+		}
+
+
+	</style>
+	<link href="../../libraries/bootstrap.css" rel="stylesheet" />
+	<link href="../../libraries/bootstrap-theme.css" rel="stylesheet" />
+	<script src="../../libraries/angular.js"></script>
+	<script>
+		'use strict';
+
+		var app = new angular.module('task1App', []);
+
+		app.factory('mathCalc1', function () {
+			return {
+				add: function (a, b) {
+					return a + b;
+				},
+				sub: function (a, b) {
+					return a - b;
+				},
+				mult: function (a, b) {
+					return a * b;
+				},
+				div: function (a, b) {
+					return a / b;
+				}
+			}
+		});
+
+		app.service('mathCalc2', function () {
+			this.add = function (a, b) {
+				return a + b;
+			};
+			this.sub = function (a, b) {
+				return a - b;
+			};
+			this.mult = function (a, b) {
+				return a * b;
+			};
+			this.div = function (a, b) {
+				return a / b;
+			}
+		});
+
+		app.provider('mathCalc3', function () {
+			return {
+				$get: function () {
+					return {
+						add: function (a, b) {
+							return a + b;
+						},
+						sub: function (a, b) {
+							return a - b;
+						},
+						mult: function (a, b) {
+							return a * b;
+						},
+						div: function (a, b) {
+							return a / b;
+						}
+					}
+				}
+			}
+		});
+
+
+		app.controller('mainCtrl', ['$scope', 'mathCalc1', 'mathCalc2', 'mathCalc3', function($scope, mathCalc1, mathCalc2, mathCalc3) {
+
+			$scope.numberRegex = /^[0-9]*$/;
+
+			$scope.resultService1 = '';
+			$scope.resultService2 = '';
+			$scope.resultService3 = '';
+			$scope.calcAdd = function () {
+				$scope.resultService1 = mathCalc1.add(+$scope.numberA, +$scope.numberB);
+				$scope.resultService2 = mathCalc2.add(+$scope.numberA, +$scope.numberB);
+				$scope.resultService3 = mathCalc3.add(+$scope.numberA, +$scope.numberB);
+			};
+			$scope.calcSub = function () {
+				$scope.resultService1 = mathCalc1.sub(+$scope.numberA, +$scope.numberB);
+				$scope.resultService2 = mathCalc2.sub(+$scope.numberA, +$scope.numberB);
+				$scope.resultService3 = mathCalc3.sub(+$scope.numberA, +$scope.numberB);
+			};
+			$scope.calcMult = function () {
+				$scope.resultService1 = mathCalc1.mult(+$scope.numberA, +$scope.numberB);
+				$scope.resultService2 = mathCalc2.mult(+$scope.numberA, +$scope.numberB);
+				$scope.resultService3 = mathCalc3.mult(+$scope.numberA, +$scope.numberB);
+
+			};
+			$scope.calcDiv = function () {
+				$scope.resultService1 = mathCalc1.div(+$scope.numberA, +$scope.numberB);
+				$scope.resultService2 = mathCalc2.div(+$scope.numberA, +$scope.numberB);
+				$scope.resultService3 = mathCalc3.div(+$scope.numberA, +$scope.numberB);
+			};
+
+		}]);
+
+
+	</script>
+</head>
+<body ng-controller="mainCtrl">
+	<form class="calc" name="calcForm">
+		<div class="input-group">
+			<input class="form-control" type="text" ng-model="numberA" placeholder="Enter number A" required ng-pattern="numberRegex">
+			<input class="form-control" type="text" ng-model="numberB" placeholder="Enter number B" ng-pattern="numberRegex">
+		</div>
+		<div class="btn-block">
+			<button class="btn btn-default" ng-click="calcAdd()" ng-disabled="calcForm.$invalid">Add</button>
+			<button class="btn btn-default" ng-click="calcSub()" ng-disabled="calcForm.$invalid">Sub</button>
+			<button class="btn btn-default" ng-click="calcMult()" ng-disabled="calcForm.$invalid">Mult</button>
+			<button class="btn btn-default" ng-click="calcDiv()" ng-disabled="calcForm.$invalid">Div</button>
+		</div>
+	</form>
+	<div class="result">
+		<div>
+			<h3>Service: mathCalc1</h3>
+			<h4>{{resultService1}}</h4>
+		</div>
+		<div>
+			<h3>Service: mathCalc2</h3>
+			<h4>{{resultService2}}</h4>
+		</div>
+		<div>
+			<h3>Service: mathCalc3</h3>
+			<h4>{{resultService3}}</h4>
+		</div>
+	</div>
+</body>
+</html>

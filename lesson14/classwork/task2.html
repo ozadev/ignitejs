@@ -1,0 +1,50 @@
+﻿
+<!DOCTYPE html>
+<html lang="en" ng-app="task2App">
+<head>
+	<meta charset="utf-8">
+	<title>Classwork - task2 (lesson14)</title>
+	<style>
+	</style>
+	<link href="../../libraries/bootstrap.css" rel="stylesheet" />
+	<link href="../../libraries/bootstrap-theme.css" rel="stylesheet" />
+	<script src="../../libraries/angular.js"></script>
+	<script>
+		'use strict';
+
+		var app = new angular.module('task2App', []);
+
+		app.provider('clickCounter', function () {
+
+			var counter = 0;
+
+			return {
+				setCounterOffset: function (offset) {
+					if (angular.isDefined(offset)) {
+						counter = offset;
+					}
+				},
+				$get: function () {
+					return function () {
+						console.log('Click #' + ++counter);
+					}
+				}
+			}
+		});
+
+		app.config(function (clickCounterProvider) {
+			clickCounterProvider.setCounterOffset(5);
+		});
+
+		app.controller('mainCtrl', ['$scope', 'clickCounter', function($scope, clickCounter) {
+			$scope.clickHandler = function() {
+				clickCounter();
+			};
+		}]);
+
+	</script>
+</head>
+<body ng-controller="mainCtrl">
+<button class="btn btn-default" ng-click="clickHandler()">Click me!</button>
+</body>
+</html>
