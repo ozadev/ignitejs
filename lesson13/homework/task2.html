@@ -1,0 +1,82 @@
+﻿<!DOCTYPE html>
+<html lang="en" ng-app="task2App">
+<head> 
+	<meta charset="utf-8">
+	<title>Homework - task2 (lesson13)</title>
+	<style>
+		div {
+			display: inline-block;
+			width: 100px;
+			height: 100px;
+			border: 1px solid black;
+			margin: 10px;
+			text-align: center;
+			font-size: 20px;
+			font-weight: 700;
+			line-height: 100px;
+		}
+
+		section {
+			width: 300px;
+		}
+
+		.type1 {
+			background-color: steelblue;
+		}
+
+		.type2 {
+			background-color: crimson;
+		}
+
+		.type3 {
+			background-color: green;
+		}
+
+	</style>
+	<link href="../../libraries/bootstrap.css" rel="stylesheet" />
+	<link href="../../libraries/bootstrap-theme.css" rel="stylesheet" />
+	<script src="../../libraries/angular.js"></script>
+	<script>
+		'use strict';
+
+		var app = angular.module('task2App', []);
+
+		app.controller('mainCtrl', ['$scope', function($scope) {
+
+			function getRandomInt(min, max) {
+				return Math.floor(Math.random() * (max - min + 1)) + min;
+			}
+
+			$scope.blockTypeArr = [];
+			var typeArr = ['type1', 'type2', 'type3'];
+
+			for (var i = 0; i < 10; i++) {
+				$scope.blockTypeArr[i] = typeArr[getRandomInt(0, 2)];
+			}
+
+			var filterTypeText = '';
+
+			$scope.selectType = function(item) {
+				if (item == filterTypeText || filterTypeText === '') {
+					return item;
+				}
+			};
+
+			$scope.makeFilter = function() {
+				filterTypeText = $scope.selType;
+			}
+
+		}]);
+
+	</script>
+</head>
+<body ng-controller="mainCtrl">
+	<section class="input-group">
+		<input class="form-control" type="text" ng-model="selType" placeholder="Enter selected type">
+		<span class="input-group-btn">
+			<button class="btn btn-default" ng-click="makeFilter()">Filter</button>
+		</span>
+	</section>
+	<div ng-repeat="type in blockTypeArr | filter : selectType track by $index" ng-class="type">{{type}}</div>
+</body>
+</html>

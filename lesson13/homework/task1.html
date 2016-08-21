@@ -1,0 +1,51 @@
+﻿<!DOCTYPE html>
+<html lang="en" ng-app="task1App">
+<head> 
+	<meta charset="utf-8">
+	<title>Homework - task1 (lesson13)</title>
+	<style>
+		.style1 {
+			background-color: #5bc0de;
+			color: darkred;
+			border: 1px solid black;
+		}
+
+		.style2 {
+			padding: 20px;
+			background-color: lightyellow;
+			color: darkgreen;
+			border: 2px solid black;
+		}
+
+		.style3 {
+			padding: 0 30px;
+			color: red;
+			border: 3px solid black;
+		}
+
+		label {
+			margin: 20px;
+		}
+	</style>
+	<link href="../../libraries/bootstrap.css" rel="stylesheet" />
+	<link href="../../libraries/bootstrap-theme.css" rel="stylesheet" />
+	<script src="../../libraries/angular.js"></script>
+	<script>
+		'use strict';
+
+		var app = angular.module('task1App', []);
+
+		app.controller('mainCtrl', ['$scope', function($scope) {
+			$scope.textBlockStyle = ['style1', 'style2', 'style3'];
+		}]);
+
+	</script>
+</head>
+<body ng-controller="mainCtrl">
+	<label ng-repeat="style in textBlockStyle">
+		{{style}}
+		<input ng-model="$parent.textStyle" type="radio" value="{{style}}">
+	</label>
+	<p ng-class="textStyle">Some interesting text...</p>
+</body>
+</html>

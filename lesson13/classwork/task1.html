@@ -1,0 +1,48 @@
+﻿<!DOCTYPE html>
+<html lang="en" ng-app="task1App">
+<head> 
+	<meta charset="utf-8">
+	<title>Classwork - task1 (lesson13)</title>
+	<style>
+		body {
+			text-align: center;
+		}
+
+		div {
+			margin: 20px auto;
+			width: 100px;
+			height: 100px;
+			border: 3px solid black;
+		}
+
+		.block-width {
+			width: 200px;
+		}
+
+		.block-bgcolor {
+			background-color: crimson;
+		}
+	</style>
+	<link href="../../libraries/bootstrap.css" rel="stylesheet" />
+	<link href="../../libraries/bootstrap-theme.css" rel="stylesheet" />
+	<script src="../../libraries/angular.js"></script>
+	<script>
+		'use strict';
+
+		var app = angular.module('task1App', []);
+
+		app.controller('mainCtrl', ['$scope', function($scope) {
+
+			$scope.setStyle = function() {
+				$scope.blockStyle = ['block-width', 'block-bgcolor'];
+			};
+
+		}]);
+
+	</script>
+</head>
+<body ng-controller="mainCtrl">
+	<div ng-class="blockStyle"></div>
+	<button class="btn btn-default" ng-click="setStyle()">Set style</button>
+</body>
+</html>
