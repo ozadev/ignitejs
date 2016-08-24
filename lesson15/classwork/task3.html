@@ -1,0 +1,146 @@
+﻿<!DOCTYPE html>
+<html lang="en" ng-app="task3App">
+<head> 
+	<meta charset="utf-8">
+	<title>Classwork - task3 (lesson15)</title>
+	<style>
+		section {
+			width: 90%;
+			margin: 50px 5%;
+		}
+
+		section > div {
+			width: 30%;
+			margin: 0;
+			padding: 0 5%;
+			display: inline-block;
+			vertical-align: top;
+		}
+
+	</style>
+	<link href="../../libraries/bootstrap.css" rel="stylesheet" />
+	<link href="../../libraries/bootstrap-theme.css" rel="stylesheet" />
+	<script src="../../libraries/lib_v158/angular.js"></script>
+	<script src="../../libraries/lib_v158/angular-cookies.js"></script>
+	<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.8/angular.js"></script>-->
+	<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.8/angular-cookies.js"></script>-->
+	<script>
+		'use strict';
+
+		var app = angular.module('task3App', ['ngCookies']);
+
+		app.factory('cookiesServe', ['$cookies', function ($cookies) {
+			return {
+				create: function (id, value, exp) {
+
+					if (angular.isUndefined(id) || angular.isUndefined(value)) {
+						alert('Error: not all required data set for cookie creation');
+						return false;
+					}
+
+					var expDate;
+					if (angular.isDefined(exp)) {
+						if (angular.isDate(exp)) {
+							expDate = exp;
+						}
+						else {
+							expDate = new Date(exp);
+							if (isNaN(expDate)) {
+								expDate = 'Session';
+							}
+						}
+					}
+
+					var existCookie = $cookies.get(id);
+					$cookies.put(id, value, {expires: expDate});
+
+					if (angular.isDefined(existCookie)) {
+						alert('Cookie with id = ' + id + 'already exist;\nprevious value = ' + existCookie + '; new value = ' + value + ';');
+					}
+					else {
+						alert('Created new cookie with: id = ' + id + '; value = ' + value + ';');
+					}
+
+					if (expDate < new Date()) {
+						alert('Expires date of this cookie is lower than current date;\nCookie will automatically removed');
+					}
+
+					return true;
+				},
+				remove: function (id) {
+
+					if (angular.isUndefined(id)) {
+						alert('Error: not all required data set');
+						return false;
+					}
+
+					if (angular.isUndefined($cookies.get(id))) {
+						alert('No cookie with id = ' + id + ';');
+						return false;
+					}
+
+					$cookies.remove(id);
+					alert('Cookie with id = ' + id + ' successfully removed;');
+
+					return true;
+				},
+				getAll: function () {
+					return $cookies.getAll();
+				}
+			}
+		}]);
+
+		app.controller('mainCtrl', ['$scope', 'cookiesServe', function($scope, cookiesServe) {
+
+			$scope.cookies = cookiesServe.getAll();
+
+			$scope.createCookie = function () {
+				cookiesServe.create($scope.crCookieId, $scope.crCookieVal, $scope.crCookieExp);
+				$scope.cookies = cookiesServe.getAll();
+			};
+
+			$scope.removeCookie = function () {
+				cookiesServe.remove($scope.rmCookieId);
+				$scope.cookies = cookiesServe.getAll();
+			};
+
+		}]);
+
+	</script>
+</head>
+<body ng-controller="mainCtrl">
+	<section>
+		<div class="form-group">
+			<h3>Create new cookie:</h3>
+			<label>ID: </label>
+			<input class="form-control" type="text" ng-model="crCookieId">
+			<label>Value: </label>
+			<input class="form-control" type="text" ng-model="crCookieVal">
+			<label>Expires date: </label>
+			<input class="form-control" type="text" ng-model="crCookieExp"><br>
+			<input type="button" class="btn btn-default" value="Create Cookie" ng-click="createCookie()">
+		</div>
+		<div>
+			<h3>Remove cookie:</h3>
+			<label>ID: </label>
+			<input class="form-control" type="text" ng-model="rmCookieId"><br>
+			<input type="button" class="btn btn-default" value="Remove Cookie" ng-click="removeCookie()">
+		</div>
+		<div>
+			<h3>Cookies list:</h3>
+			<table class="table">
+				<thead>
+				<tr>
+					<th>ID</th>
+					<th>Value</th>
+				</tr>
+				</thead>
+				<tr ng-repeat="(id, value) in cookies">
+					<td>{{id}}</td>
+					<td>{{value}}</td>
+				</tr>
+			</table>
+		</div>
+	</section>
+</body>
+</html>

@@ -1,0 +1,63 @@
+﻿<!DOCTYPE html>
+<html lang="en" ng-app="task2App">
+<head> 
+	<meta charset="utf-8">
+	<title>Homework - task2 (lesson15)</title>
+	<style>
+		.stopwatch {
+			width: 50%;
+			margin: 50px auto;
+			text-align: center;
+		}
+	</style>
+	<link href="../../libraries/bootstrap.css" rel="stylesheet" />
+	<link href="../../libraries/bootstrap-theme.css" rel="stylesheet" />
+	<script src="../../libraries/angular.js"></script>
+	<script>
+		'use strict';
+
+		var app = angular.module('task2App', []);
+
+		app.controller('mainCtrl', ['$scope', '$interval', '$filter', function($scope, $interval, $filter) {
+
+			var time = 0;
+			$scope.timeFormated = $filter('date')(time, "HH:mm:ss.sss", "UTC").slice(0, -2);
+
+			var counter;
+
+			$scope.startCounter = function () {
+
+				if (angular.isDefined(counter)) {
+					return;
+				}
+
+				counter = $interval(function () {
+					time += 100;
+					$scope.timeFormated = $filter('date')(time, "HH:mm:ss.sss", "UTC").slice(0, -2);
+				}, 100);
+
+			};
+
+			$scope.stopCounter = function () {
+				$interval.cancel(counter);
+				counter = undefined;
+			};
+
+			$scope.resetCounter = function () {
+				time = 0;
+				$scope.timeFormated = $filter('date')(time, "HH:mm:ss.sss", "UTC").slice(0, -2);
+			};
+
+		}]);
+
+	</script>
+</head>
+<body ng-controller="mainCtrl">
+	<div class="stopwatch">
+		<h1>{{timeFormated}}</h1>
+		<button class="btn btn-default" ng-click="startCounter()">Start</button>
+		<button class="btn btn-default" ng-click="stopCounter()">Stop</button>
+		<button class="btn btn-default" ng-click="resetCounter()">Reset</button>
+	</div>
+</body>
+</html>

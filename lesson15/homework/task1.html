@@ -1,0 +1,160 @@
+﻿<!DOCTYPE html>
+<html lang="en" ng-app="task1App">
+<head> 
+	<meta charset="utf-8">
+	<title>Classwork - task1 (lesson15)</title>
+	<style>
+		section {
+			width: 90%;
+			margin: 50px 5%;
+		}
+
+		section > div {
+			width: 30%;
+			margin: 0;
+			padding: 0 5%;
+			display: inline-block;
+			vertical-align: top;
+		}
+
+	</style>
+	<link href="../../libraries/bootstrap.css" rel="stylesheet" />
+	<link href="../../libraries/bootstrap-theme.css" rel="stylesheet" />
+	<script src="../../libraries/lib_v158/angular.js"></script>
+	<script>
+		'use strict';
+
+		var app = angular.module('task1App', []);
+
+		app.factory('cacheServe', ['$cacheFactory', '$timeout', function ($cacheFactory, $timeout) {
+
+			var cache = $cacheFactory('cacheInst');
+			var keys = [];
+
+			return {
+				create: function (id, value, exp) {
+
+					if (angular.isUndefined(id) || angular.isUndefined(value)) {
+						alert('Error: not all required data set for cookie creation');
+						return false;
+					}
+
+					var existCache = cache.get(id);
+					cache.put(id, value);
+					keys.push(id);
+
+					if (angular.isDefined(existCache)) {
+						alert('Cache data with id = ' + id + 'already exist;\nprevious value = ' + existCache + '; new value = ' + value + ';');
+					}
+					else {
+						alert('Created new cache data with: id = ' + id + '; value = ' + value + ';');
+					}
+
+
+					if (angular.isDefined(exp)) {
+						var expTime = parseInt(exp);
+						if (isNaN(expTime)) {
+							alert('Expiration time is not valid, cache data deletion will not occur;')
+						}
+						else {
+							$timeout(function () {
+								cache.remove(id);
+								delete keys[keys.indexOf(id)];
+							}, expTime);
+						}
+					}
+
+					return true;
+				},
+				remove: function (id) {
+
+					if (angular.isUndefined(id)) {
+						alert('Error: not all required data set');
+						return false;
+					}
+
+					if (angular.isUndefined(cache.get(id))) {
+						alert('No cache data with id = ' + id + ';');
+						return false;
+					}
+
+					cache.remove(id);
+					delete keys[keys.indexOf(id)];
+
+					alert('Cache data with id = ' + id + ' successfully removed;');
+
+					return true;
+				},
+				get: function (id) {
+					return cache.get(id);
+				},
+				getAll: function () {
+					var cacheData = {};
+					keys.forEach(function (key) {
+						cacheData[key] = cache.get(key);
+					});
+
+					return cacheData;
+				}
+			}
+		}]);
+
+		app.controller('mainCtrl', ['$scope', 'cacheServe', function($scope, cacheServe) {
+
+			$scope.cacheData = cacheServe.getAll();
+
+			$scope.createCache = function () {
+				cacheServe.create($scope.crCacheId, $scope.crCacheVal, $scope.crCacheExp);
+				$scope.cacheData = cacheServe.getAll();
+			};
+
+			$scope.removeCache = function () {
+				cacheServe.remove($scope.rmCacheId);
+				$scope.cacheData = cacheServe.getAll();
+			};
+
+			$scope.refreshCache = function () {
+				$scope.cacheData = cacheServe.getAll();
+			};
+
+		}]);
+
+	</script>
+</head>
+<body ng-controller="mainCtrl">
+	<section>
+		<div class="form-group">
+			<h3>Create new cache:</h3>
+			<label>ID: </label>
+			<input class="form-control" type="text" ng-model="crCacheId">
+			<label>Value: </label>
+			<input class="form-control" type="text" ng-model="crCacheVal">
+			<label>Expiration time (in milliseconds): </label>
+			<input class="form-control" type="text" ng-model="crCacheExp"><br>
+			<input type="button" class="btn btn-default" value="Create Cache" ng-click="createCache()">
+		</div>
+		<div>
+			<h3>Remove cache:</h3>
+			<label>ID: </label>
+			<input class="form-control" type="text" ng-model="rmCacheId"><br>
+			<input type="button" class="btn btn-default" value="Remove Cache" ng-click="removeCache()">
+		</div>
+		<div>
+			<h3>Cache list:</h3>
+			<table class="table">
+				<thead>
+				<tr>
+					<th>ID</th>
+					<th>Value</th>
+				</tr>
+				</thead>
+				<tr ng-repeat="(id, value) in cacheData">
+					<td>{{id}}</td>
+					<td>{{value}}</td>
+				</tr>
+			</table>
+			<input type="button" class="btn btn-default" value="Refresh Cache" ng-click="refreshCache()">
+		</div>
+	</section>
+</body>
+</html>

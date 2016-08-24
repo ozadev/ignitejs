@@ -1,0 +1,99 @@
+﻿<!DOCTYPE html>
+<html lang="en" ng-app="task1App">
+<head> 
+	<meta charset="utf-8">
+	<title>Classwork - task1 (lesson15)</title>
+	<style>
+		.text-block {
+			width: 50%;
+			margin: 40px auto;
+		}
+
+		.text-block h3 {
+			text-align: center;
+		}
+
+		header {
+			position: fixed;
+			background-color: rgba(0, 0, 0, 0.9);
+			width: 50%;
+			top: 0;
+			left: 25%;
+		}
+
+		header ul {
+			padding: 0;
+		}
+
+		header ul li {
+			display: inline-block;
+			margin: 5px 15px;
+			cursor: pointer;
+			color: white;
+		}
+
+		header ul li:hover {
+			color: firebrick;
+		}
+
+	</style>
+	<link href="../../libraries/bootstrap.css" rel="stylesheet" />
+	<link href="../../libraries/bootstrap-theme.css" rel="stylesheet" />
+	<script src="../../libraries/angular.js"></script>
+	<script>
+		'use strict';
+
+		var app = angular.module('task1App', []);
+
+		app.config(function ($anchorScrollProvider) {
+			$anchorScrollProvider.disableAutoScrolling();
+		});
+
+		app.run(function ($anchorScroll, $window) {
+//			alert(window.getComputedStyle(document.querySelector('header')).height);
+			$window.onload = function () {
+				var headerHeight = $window.getComputedStyle($window.document.querySelector('header')).height;
+				$window.document.querySelectorAll('.text-block')[0].style.marginTop = headerHeight;
+				$anchorScroll.yOffset = parseInt(headerHeight);
+			}
+		});
+
+
+		app.controller('mainCtrl', ['$scope', '$location', '$anchorScroll', function($scope, $location, $anchorScroll) {
+
+			// Set '#/' at the end of url (hashbang mode)
+			$location.path('/');
+
+			var textBlockCount = 20;
+			$scope.textTitle = [];
+
+			for (var i = 0; i < textBlockCount; i++) {
+				$scope.textTitle[i] = 'title #' + (i + 1);
+			}
+
+			$scope.showTitle = function (id) {
+				$location.hash(id);
+				$anchorScroll(id);
+			}
+
+		}]);
+
+	</script>
+</head>
+<body ng-controller="mainCtrl">
+	<header>
+		<nav class="main-nav">
+			<ul>
+				<li ng-repeat="item in textTitle" ng-click="showTitle('title' + ($index + 1))">{{item}}</li>
+			</ul>
+		</nav>
+	</header>
+	<section>
+		<div class="text-block" id="{{'title' + ($index + 1)}}" ng-repeat="item in textTitle">
+			<h3>{{item}}</h3>
+			<p>Curabitur non nulla sit amet nisl tempus convallis quis ac lectus. Vivamus suscipit tortor eget felis porttitor volutpat. Curabitur aliquet quam id dui posuere blandit. Nulla porttitor accumsan tincidunt. Cras ultricies ligula sed magna dictum porta. Curabitur non nulla sit amet nisl tempus convallis quis ac lectus. Praesent sapien massa, convallis a pellen tesque nec, egestas non nisi. Mauris blandit aliquet elit, eget tincidunt ni dictum porta.
+			</p>
+		</div>
+	</section>
+</body>
+</html>
