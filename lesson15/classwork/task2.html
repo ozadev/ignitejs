@@ -25,9 +25,10 @@
 
 			$scope.startCounter = function () {
 
+				$scope.time = 0;
+
 				if (angular.isDefined(counter)) {
 					$scope.stopCounter();
-					$scope.time = 0;
 				}
 
 				counter = $interval(function () {
