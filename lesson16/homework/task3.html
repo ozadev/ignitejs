@@ -1,0 +1,82 @@
+﻿<!DOCTYPE html>
+<html lang="en" ng-app="task3App">
+<head> 
+	<meta charset="utf-8">
+	<title>Homework - task3 (lesson16)</title>
+	<style>
+		ul li {
+			cursor: pointer;
+		}
+
+		ul li:hover {
+			color: firebrick;
+		}
+	</style>
+	<link href="../../libraries/bootstrap.css" rel="stylesheet" />
+	<script src="../../libraries/angular.js"></script>
+	<script src="../../libraries/angular_route.js"></script>
+	<script>
+		'use strict';
+
+		var people = [{name: 'Vasya', age: 20, email: 'vasya@mail.ru', employed: false},
+			{name: 'Masha', age: 25, email: 'm@m', employed: true},
+			{name: 'Petya', age: 27, email: 'petya@stuff', employed: true},
+			{name: 'John', age: 36, email: 'johnDoe@mail', employed: true},
+			{name: 'Jane', age: 28, email: 'janeDoe@mail', employed: false}];
+
+		var app = angular.module('task3App', ['ngRoute']);
+
+		app.config(function ($routeProvider) {
+
+			$routeProvider
+				.when('/home', {
+					templateUrl: 'Task/home.html',
+					controller: 'homeCtrl'
+				})
+				.when('/contact', {
+					templateUrl: 'Task/contact.html'
+				})
+				.when('/contact/:name/:age/:email/:employed', {
+					templateUrl: 'Task/contact.html',
+					controller: 'contactFormCtrl'
+				})
+				.otherwise({
+					redirectTo: '/home'
+				});
+
+		});
+
+		app.controller('homeCtrl', ['$scope', '$location', function ($scope, $location) {
+			$scope.people = people;
+
+			$scope.goToContact = function (index) {
+				var paramStr = $scope.people[index].name + '/'
+					+ $scope.people[index].age + '/'
+					+ $scope.people[index].email + '/'
+					+ $scope.people[index].employed;
+
+				$location.path('/contact/' + paramStr);
+
+			}
+		}]);
+
+		app.controller('contactFormCtrl', ['$scope', '$routeParams', function ($scope, $routeParams) {
+			$scope.name = $routeParams.name;
+			$scope.age = $routeParams.age;
+			$scope.email = $routeParams.email;
+			$scope.employed = $routeParams.employed === 'true' ? true : false;
+
+		}]);
+
+	</script>
+</head>
+<body>
+	<div class="panel panel-primary well">
+		<ul class="nav nav-tabs">
+			<li><a href="#/home">home</a></li>
+			<li><a href="#/contact">contact</a></li>
+		</ul>
+	</div>
+	<div class="panel" ng-view></div>
+</body>
+</html>

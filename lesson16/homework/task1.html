@@ -1,0 +1,42 @@
+﻿<!DOCTYPE html>
+<html lang="en" ng-app="task1App">
+<head> 
+	<meta charset="utf-8">
+	<title>Homework - task1 (lesson16)</title>
+	<style>
+	</style>
+	<link href="../../libraries/bootstrap.css" rel="stylesheet" />
+	<script src="../../libraries/angular.js"></script>
+	<script src="../../libraries/angular_route.js"></script>
+	<script>
+		'use strict';
+
+		var app = angular.module('task1App', ['ngRoute']);
+
+		app.config(function ($routeProvider) {
+
+			$routeProvider
+				.when('/home', {
+					templateUrl: 'Task/home.html'
+				})
+				.when('/contact', {
+					templateUrl: 'Task/contact.html'
+				})
+				.otherwise({
+					redirectTo: '/home'
+				});
+
+		});
+
+	</script>
+</head>
+<body>
+	<div class="panel panel-primary well">
+		<ul class="nav nav-tabs">
+			<li><a href="#/home">home</a></li>
+			<li><a href="#/contact">contact</a></li>
+		</ul>
+	</div>
+	<div class="panel" ng-view></div>
+</body>
+</html>

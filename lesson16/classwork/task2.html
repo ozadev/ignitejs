@@ -1,0 +1,47 @@
+﻿<!DOCTYPE html>
+<html lang="en" ng-app="task2App">
+<head>
+	<base href="/" />
+	<meta charset="utf-8">
+	<title>Classwork - task2 (lesson16)</title>
+	<style>
+	</style>
+	<link href="../../libraries/bootstrap.css" rel="stylesheet" />
+	<link href="../../libraries/bootstrap-theme.css" rel="stylesheet" />
+	<script src="../../libraries/angular.js"></script>
+	<script src="../../libraries/angular_route.js"></script>
+	<script>
+		'use strict';
+
+		var app = angular.module('task2App', ['ngRoute']);
+
+		app.config(function ($routeProvider, $locationProvider) {
+
+			$routeProvider
+				.when('/view1', {
+					templateUrl: 'Task/view1.html'
+				})
+				.when('/view2', {
+					templateUrl: 'Task/view2.html'
+				})
+				.otherwise({
+					redirectTo: '/view1'
+				});
+
+			$locationProvider.html5Mode(true);
+
+		});
+
+//		Лінк на реалізацію завдяння у "планкері": http://plnkr.co/edit/Ha9mJRuilOvKA6mmnvHm?p=preview
+
+
+	</script>
+</head>
+<body>
+	<ul class="nav nav-tabs">
+		<li><a href="/view1">view1</a></li>
+		<li><a href="/view2">view2</a></li>
+	</ul>
+	<div class="panel" ng-view></div>
+</body>
+</html>

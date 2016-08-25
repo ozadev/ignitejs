@@ -1,0 +1,58 @@
+﻿<!DOCTYPE html>
+<html lang="en" ng-app="task2App">
+<head>
+	<base href="/" />
+	<meta charset="utf-8">
+	<title>Homework - task2 (lesson16)</title>
+	<style>
+	</style>
+	<link href="../../libraries/bootstrap.css" rel="stylesheet" />
+	<script src="../../libraries/angular.js"></script>
+	<script src="../../libraries/angular_route.js"></script>
+	<script>
+		'use strict';
+
+		var people = [{name: 'Vasya', age: 20, email: 'vasya@mail.ru', employed: false},
+			{name: 'Masha', age: 25, email: 'm@m', employed: true},
+			{name: 'Petya', age: 27, email: 'petya@stuff', employed: true},
+			{name: 'John', age: 36, email: 'johnDoe@mail', employed: true},
+			{name: 'Jane', age: 28, email: 'janeDoe@mail', employed: false}];
+
+		var app = angular.module('task2App', ['ngRoute']);
+
+		app.config(function ($routeProvider, $locationProvider) {
+
+			$routeProvider
+				.when('/home', {
+					templateUrl: 'Task/home.html',
+					controller: 'homeCtrl'
+				})
+				.when('/contact', {
+					templateUrl: 'Task/contact.html'
+				})
+				.otherwise({
+					redirectTo: '/home'
+				});
+
+			$locationProvider.html5Mode(true);
+
+		});
+
+		app.controller('homeCtrl', function ($scope) {
+			$scope.people = people;
+		})
+
+//		Лінк на реалізацію завдання у "планкері": http://plnkr.co/edit/BXZKdvfmuYMSNhdklpXP?p=preview
+
+	</script>
+</head>
+<body>
+	<div class="panel panel-primary well">
+		<ul class="nav nav-tabs">
+			<li><a href="/home">home</a></li>
+			<li><a href="/contact">contact</a></li>
+		</ul>
+	</div>
+	<div class="panel" ng-view></div>
+</body>
+</html>
