@@ -1,0 +1,79 @@
+﻿<!DOCTYPE html>
+<html lang="en" ng-app="task2App">
+<head> 
+	<meta charset="utf-8">
+	<title>Classwork - task2 (lesson17)</title>
+	<style>
+		.reg-form-container {
+			width: 300px;
+			margin: 50px auto;
+			text-align: center;
+		}
+
+		.btn-block {
+			padding-top: 50px;
+		}
+	</style>
+	<link href="../../libraries/bootstrap.css" rel="stylesheet" />
+	<link href="../../libraries/bootstrap-theme.css" rel="stylesheet" />
+	<script src="../../libraries/angular.js"></script>
+	<script>
+		'use strict';
+
+		var app = angular.module('task2App', [])
+		.controller('mainCtrl', ['$scope', function($scope) {
+
+			$scope.data = [
+				{name: 'Username', type: 'text'},
+				{name: 'Login', type: 'text'},
+				{name: 'Password', type: 'password'},
+				{name: 'Email', type: 'email'}
+			];
+
+		}])
+		// Reusable	directive (isolate scope)
+		.directive('regForm', function () {
+			return {
+				restrict: 'A',
+				scope: {
+					data: '=regForm'
+				},
+				link: function (scope, element, attr) {
+					var data = scope.data;
+
+					if (angular.isUndefined(data)) {
+						return;
+					}
+
+					var form = angular.element('<form class="form-control input-group" name="regForm"></form>');
+
+					for (var i = 0; i < data.length; i++) {
+						var inputBlock = angular.element(
+								'<div class="form-group">' +
+								'<label>' + data[i].name + '</label>' +
+								'<input name=' + data[i].name + ' class="input-lg form-control" type=' + data[i].type + '>' +
+								'</div>'
+						);
+
+						form.append(inputBlock);
+					}
+
+					var buttonBlock = angular.element(
+							'<div class="btn-block">' +
+								'<input class="btn btn-lg btn-info" type="submit" value="Submit">' +
+							'</div>'
+					);
+
+					form.append(buttonBlock);
+
+					element.append(form);
+				}
+			};
+		});
+
+	</script>
+</head>
+<body ng-controller="mainCtrl">
+	<div class="reg-form-container" reg-form="data"></div>
+</body>
+</html>

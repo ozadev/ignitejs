@@ -1,0 +1,92 @@
+﻿<!DOCTYPE html>
+<html lang="en" ng-app="task3App">
+<head> 
+	<meta charset="utf-8">
+	<title>Classwork - task3 (lesson17)</title>
+	<style>
+		.reg-form-container {
+			width: 300px;
+			margin: 50px auto;
+			text-align: center;
+		}
+
+		.btn-block {
+			padding-top: 50px;
+		}
+
+		form .ng-valid.ng-dirty {
+			background-color: lightgreen;
+		}
+
+		form .ng-invalid.ng-dirty {
+			background-color: lightcoral;
+		}
+
+		input.pass-not-equal {
+			background-color: lightcoral !important;
+		}
+
+	</style>
+	<link href="../../libraries/bootstrap.css" rel="stylesheet" />
+	<link href="../../libraries/bootstrap-theme.css" rel="stylesheet" />
+	<script src="../../libraries/angular.js"></script>
+	<script>
+		'use strict';
+
+		var app = angular.module('task3App', [])
+		.controller('mainCtrl', ['$scope', function($scope) {
+
+			$scope.data = [
+				{name: 'username', type: 'text', pattern: /^[A-Za-z]*$/},
+				{name: 'login', type: 'text', pattern: /^[A-Za-z]*$/},
+				{name: 'password', type: 'password', pattern: /^[A-Za-z0-9]*$/},
+				{name: 'email', type: 'email', pattern: /^\w+@[a-zA-Z_]+?\.[a-zA-Z]+$/}
+			];
+
+		}])
+		// Reusable	directive (isolate scope)
+		.directive('regForm', function ($compile) {
+			return {
+				restrict: 'A',
+				scope: {
+					data: '=regForm'
+				},
+				link: function (scope, element, attr) {
+					var data = scope.data;
+
+					if (angular.isUndefined(data)) {
+						return;
+					}
+
+					var form = angular.element('<form class="form-control input-group" name="regForm"></form>');
+
+					for (var i = 0; i < data.length; i++) {
+						var inputBlock = angular.element($compile(
+								'<div class="form-group">' +
+								'<label>' + data[i].name + '</label>' +
+								'<input name=' + data[i].name + ' class="input-lg form-control" type=' + data[i].type + ' required ng-pattern=' + data[i].pattern + ' ng-model="regForm.' + data[i].name + '">' +
+								'</div>'
+						)(scope));
+
+						form.append(inputBlock);
+					}
+
+					var buttonBlock = angular.element(
+							'<div class="btn-block">' +
+								'<input class="btn btn-lg btn-info" type="submit" value="Submit">' +
+							'</div>'
+					);
+
+					form.append(buttonBlock);
+
+					element.append(form);
+				}
+			};
+		});
+
+	</script>
+</head>
+<body ng-controller="mainCtrl">
+	<div class="reg-form-container" reg-form="data"></div>
+</body>
+</html>

@@ -1,0 +1,68 @@
+﻿<!DOCTYPE html>
+<html lang="en" ng-app="task1App">
+<head> 
+	<meta charset="utf-8">
+	<title>Homework - task1 (lesson17)</title>
+	<style>
+	</style>
+	<link href="../../libraries/bootstrap.css" rel="stylesheet" />
+	<link href="../../libraries/bootstrap-theme.css" rel="stylesheet" />
+	<script src="../../libraries/angular.js"></script>
+	<script>
+		'use strict';
+
+		var app = angular.module('task1App', []);
+
+		app.controller('mainCtrl', ['$scope', function($scope) {
+			$scope.items = [
+				{ name: "B Item", price: 10.9, category: "Category 1", count: 10, tax: 1.12, expiration: 10 },
+				{ name: "A Item", price: 1.1, category: "Category 1", count: 8, tax: 0.55, expiration: 12 },
+				{ name: "D Item", price: 2.6, category: "Category 2", count: 7, tax: 0.22, expiration: 5 },
+				{ name: "C Item", price: 17.5, category: "Category 2", count: 33, tax: 2.77, expiration: 10 }
+			];
+		}]);
+
+		app.directive('arrTable', function () {
+			return {
+				restrict: 'A',
+				scope: {
+					arr: '=arrTable'
+				},
+				link: function (scope, element, attr) {
+
+					var arr = scope.arr;
+
+					if (angular.isUndefined(arr)) {
+						return;
+					}
+
+					var table = angular.element('<table class="table">');
+					var thead = angular.element('<thead>');
+
+					for(var key in arr[0]) {
+						thead.append(angular.element('<th>').text(key));
+					}
+
+					var tbody = angular.element('<tbody>');
+
+					for(var i = 0; i < arr.length; i++) {
+						var row = angular.element('<tr>');
+						for(var key in arr[i]) {
+							row.append(angular.element('<td>').text(arr[i][key]));
+						}
+						tbody.append(row);
+					}
+
+					table.append(thead);
+					table.append(tbody);
+					element.append(table);
+				}
+			};
+		});
+
+	</script>
+</head>
+<body ng-controller="mainCtrl">
+	<div arr-table="items"></div>
+</body>
+</html>

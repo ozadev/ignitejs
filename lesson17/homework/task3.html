@@ -1,0 +1,42 @@
+﻿<!DOCTYPE html>
+<html lang="en" ng-app="task3App">
+<head> 
+	<meta charset="utf-8">
+	<title>Homework - task3 (lesson17)</title>
+	<style>
+	</style>
+	<link href="../../libraries/bootstrap.css" rel="stylesheet" />
+	<link href="../../libraries/bootstrap-theme.css" rel="stylesheet" />
+	<script src="../../libraries/angular.js"></script>
+	<script>
+		'use strict';
+
+		var app = angular.module('task3App', []);
+
+		app.controller('mainCtrl', ['$scope', function($scope) {
+			$scope.items = [
+				{name: 'Home', href: '#/'},
+				{name: 'Services', href: '#/services'},
+				{name: 'Work', href: '#/work'},
+				{name: 'About', href: '#/about'},
+				{name: 'Clients', href: '#/clients'},
+				{name: 'Contact', href: '#/contact'}
+			];
+		}]);
+
+		app.directive('navLinks', function () {
+			return {
+				restrict: 'A',
+				scope: {
+					arr: '=navLinks'
+				},
+				template: '<ul class="nav nav-tabs"><li ng-repeat="item in arr track by $index"><a href="{{item.href}}">{{item.name}}</a></li></ul>'
+			};
+		});
+
+	</script>
+</head>
+<body ng-controller="mainCtrl">
+	<div class="panel panel-primary" nav-links="items"></div>
+</body>
+</html>

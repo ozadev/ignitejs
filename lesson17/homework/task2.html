@@ -1,0 +1,36 @@
+﻿<!DOCTYPE html>
+<html lang="en" ng-app="task2App">
+<head> 
+	<meta charset="utf-8">
+	<title>Homework - task2 (lesson17)</title>
+	<style>
+	</style>
+	<link href="../../libraries/bootstrap.css" rel="stylesheet" />
+	<link href="../../libraries/bootstrap-theme.css" rel="stylesheet" />
+	<script src="../../libraries/angular.js"></script>
+	<script>
+		'use strict';
+
+		var app = angular.module('task2App', []);
+
+		app.controller('mainCtrl', ['$scope', function($scope) {
+			$scope.data = ['text1', 'text2', 'text3', 'text4'];
+		}]);
+
+		app.directive('arrShowParagraph', function () {
+			return {
+				restrict: 'A',
+				scope: {
+					arr: '=arrShowParagraph'
+				},
+				replace: true,
+				template: '<p class="text-primary text-center" ng-repeat="item in arr track by $index">{{item}}</p>'
+			};
+		});
+
+	</script>
+</head>
+<body ng-controller="mainCtrl">
+	<div arr-show-paragraph="data"></div>
+</body>
+</html>
