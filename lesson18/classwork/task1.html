@@ -1,0 +1,62 @@
+﻿<!DOCTYPE html>
+<html lang="en" ng-app="task1App">
+<head> 
+	<meta charset="utf-8">
+	<title>Classwork - task1 (lesson18)</title>
+	<style>
+		.counter-container {
+			width: 200px;
+			margin: 50px auto;
+			border: 4px solid steelblue;
+			color: steelblue;
+			border-radius: 10px;
+			text-align: center;
+			padding: 20px;
+		}
+	</style>
+	<link href="../../libraries/bootstrap.css" rel="stylesheet" />
+	<link href="../../libraries/bootstrap-theme.css" rel="stylesheet" />
+	<script src="../../libraries/angular.js"></script>
+
+	<script type="text/ng-template" id="counterTemplate">
+		<div class="counter-container">
+			<h1>{{counter}}</h1>
+			<input type="button" class="btn btn-default" ng-click="startCounter()" value="Start">
+		</div>
+	</script>
+
+	<script>
+		'use strict';
+
+		var app = angular.module('task1App', []);
+
+		app.directive('counterWithButton', function () {
+			return {
+				restrict: 'AE',
+				template: function () {
+					return angular.element(document.querySelector('#counterTemplate')).html();
+				},
+				scope: { },
+				controller: function ($scope, $interval) {
+					$scope.counter = 0;
+
+					var counterId;
+
+					$scope.startCounter = function () {
+						if (angular.isDefined(counterId)) {
+							return;
+						}
+						counterId = $interval(function () {
+							$scope.counter++;
+						}, 1000)
+					};
+				}
+			}
+		});
+
+	</script>
+</head>
+<body>
+	<div counter-with-button></div>
+</body>
+</html>

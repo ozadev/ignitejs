@@ -1,0 +1,39 @@
+﻿<!DOCTYPE html>
+<html lang="en" ng-app="task3App">
+<head> 
+	<meta charset="utf-8">
+	<title>Classwork - task3 (lesson18)</title>
+	<style>
+		.button-container {
+			width: 200px;
+			margin: 50px auto;
+			border: 4px solid steelblue;
+			color: steelblue;
+			border-radius: 10px;
+			text-align: center;
+			padding: 20px;
+		}
+	</style>
+	<link href="../../libraries/bootstrap.css" rel="stylesheet" />
+	<link href="../../libraries/bootstrap-theme.css" rel="stylesheet" />
+	<script src="../../libraries/angular.js"></script>
+
+	<script>
+		'use strict';
+
+		var app = angular.module('task3App', []);
+
+		app.directive('customDirective', function () {
+			return {
+				restrict: 'A',
+				transclude: true,
+				template: '<div class="button-container"><button class="btn btn-default" ng-transclude></button></div>'
+			}
+		});
+
+	</script>
+</head>
+<body>
+	<div custom-directive>’myButton’</div>
+</body>
+</html>
