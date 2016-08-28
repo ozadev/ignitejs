@@ -1,0 +1,70 @@
+﻿<!DOCTYPE html>
+<html lang="en" ng-app="task2App">
+<head> 
+	<meta charset="utf-8">
+	<title>Homework - task2 (lesson18)</title>
+	<style>
+		.red {
+			color: red
+		}
+	</style>
+	<link href="../../libraries/bootstrap.css" rel="stylesheet" />
+	<link href="../../libraries/bootstrap-theme.css" rel="stylesheet" />
+	<script src="../../libraries/angular.js"></script>
+
+	<script>
+		'use strict';
+
+		var app = angular.module('task2App', []);
+
+		app.controller('mainCtrl', ['$scope', function ($scope) {
+			$scope.data = ['item1', 'item2', 'item3', 'item4', 'item5'];
+		}]);
+
+		app.directive('makeList', function () {
+			return {
+				restrict: 'A',
+				priority: 1,
+				compile: function () {
+					return {
+						//Same as use 'link' definition object
+						//post link runs in opposite 'order' (so lower priority runs first)
+						post: function (scope, element, attrs) {
+
+							var data = scope.data;
+							var ul = angular.element('<ul class="list-group"></ul>');
+
+							for (var i = 0; i < data.length; i++) {
+								ul.append(angular.element('<li class="list-group-item"></li>').html(data[i]));
+							}
+
+							element.append(ul);
+						}
+					}
+				}
+			}
+		});
+
+		app.directive('styleList', function () {
+			return {
+				restrict: 'A',
+				priority: 2,
+				//Same as use 'compile --> post' definition object
+				//post link runs in opposite 'order' (so lower priority runs first)
+				link: function (scope, element, attr) {
+					var li = element.find('li');
+					for (var i = 0; i < li.length; i++) {
+						if (i % 2) {
+							angular.element(li[i]).addClass(attr.styleList);
+						}
+					}
+				}
+			}
+		});
+
+	</script>
+</head>
+<body ng-controller="mainCtrl">
+	<div class="panel panel-primary" make-list style-list="red"></div>
+</body>
+</html>

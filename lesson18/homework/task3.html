@@ -1,0 +1,51 @@
+﻿<!DOCTYPE html>
+<html lang="en" ng-app="task3App">
+<head> 
+	<meta charset="utf-8">
+	<title>Homework - task3 (lesson18)</title>
+	<style>
+
+		.container-dialog {
+			position: fixed;
+			top: 0;
+			bottom: 0;
+			left: 0;
+			right: 0;
+			background-color: rgba(0, 0, 0, 0.3);
+		}
+
+		.dialog {
+			border: 5px solid darkslategrey;
+			background-color: white;
+			border-radius: 10px;
+			width: 400px;
+			height: 200px;
+			margin: 100px auto;
+			padding: 20px;
+		}
+
+	</style>
+	<link href="../../libraries/bootstrap.css" rel="stylesheet" />
+	<link href="../../libraries/bootstrap-theme.css" rel="stylesheet" />
+	<script src="../../libraries/angular.js"></script>
+
+	<script>
+		'use strict';
+
+		var app = angular.module('task3App', []);
+
+		app.directive('dialogBox', function () {
+			return {
+				restrict: 'AE',
+				transclude: true,
+				template: '<div class="container-dialog"><div class="dialog" ng-transclude></div></div>'
+			}
+		});
+
+
+	</script>
+</head>
+<body>
+	<div class="panel panel-primary" dialog-box>Some text.......<br>More text...<br>And more...</div>
+</body>
+</html>
