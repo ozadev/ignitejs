@@ -47,53 +47,117 @@
 	var React = __webpack_require__(1);
 	var ReactDOM = __webpack_require__(34);
 
-	var LoadCounter = React.createClass({
-	    displayName: 'LoadCounter',
+	var Counter = React.createClass({
+	    displayName: 'Counter',
 
 	    getInitialState: function () {
 	        return {
-	            counter: 0
+	            valA: '',
+	            valB: '',
+	            result: 0
 	        };
 	    },
-	    counterInc: function () {
-	        this.setState({ counter: this.state.counter + 1 });
+	    handlerClickSum: function () {
+	        this.setState({ result: +this.state.valA + +this.state.valB });
 	    },
-	    handlerClickStart: function () {
-	        this.counterId = setInterval(this.counterInc, 1000);
+	    handlerClickSub: function () {
+	        this.setState({ result: this.state.valA - this.state.valB });
 	    },
-	    handlerClickStop: function () {
-	        clearInterval(this.counterId);
+	    handlerClickMul: function () {
+	        this.setState({ result: this.state.valA * this.state.valB });
 	    },
-	    handlerClickReset: function () {
-	        this.setState({ counter: 0 });
+	    handlerClickDiv: function () {
+	        if (+this.state.valB === 0) {
+	            this.setState({ result: 'Error: division by zero' });
+	        } else {
+	            this.setState({ result: this.state.valA / this.state.valB });
+	        }
+	    },
+	    handlerClickCalc: function (e) {
+	        if (e.target.tagName !== 'BUTTON') {
+	            return;
+	        }
+
+	        if (this.state.valA === '' || this.state.valB === '') {
+	            this.setState({ result: 'Error: require input numbers' });
+	            return;
+	        }
+
+	        var result;
+
+	        switch (e.target.dataset.calcType) {
+	            case 'sum':
+	                result = +this.state.valA + +this.state.valB;
+	                break;
+	            case 'sub':
+	                result = this.state.valA - this.state.valB;
+	                break;
+	            case 'mul':
+	                result = this.state.valA * this.state.valB;
+	                break;
+	            case 'div':
+	                if (+this.state.valB === 0) {
+	                    result = 'Error: division by zero';
+	                } else {
+	                    result = this.state.valA / this.state.valB;
+	                }
+	                break;
+	            default:
+	                result = "Error: invalid calc type";
+	        }
+
+	        this.setState({ result: result });
+	    },
+	    handlerChangeValA: function (e) {
+	        var newValA = e.target.value.replace(/\D/, '');
+	        this.setState({ valA: newValA });
+	    },
+	    handlerChangeValB: function (e) {
+	        var newValB = e.target.value.replace(/\D/, '');
+	        this.setState({ valB: newValB });
 	    },
 	    render: function () {
 	        return React.createElement(
 	            'div',
 	            null,
 	            React.createElement(
-	                'h1',
+	                'p',
 	                null,
-	                this.state.counter
+	                React.createElement('input', { type: 'text', value: this.state.valA, onChange: this.handlerChangeValA, placeholder: 'Enter number A' })
 	            ),
 	            React.createElement(
 	                'p',
 	                null,
+	                React.createElement('input', { type: 'text', value: this.state.valB, onChange: this.handlerChangeValB, placeholder: 'Enter number B' })
+	            ),
+	            React.createElement(
+	                'p',
+	                { onClick: this.handlerClickCalc },
 	                React.createElement(
 	                    'button',
-	                    { className: 'btn btn-default', onClick: this.handlerClickStart },
-	                    'Start'
+	                    { className: 'btn btn-default', 'data-calc-type': 'sum' },
+	                    '+'
 	                ),
 	                React.createElement(
 	                    'button',
-	                    { className: 'btn btn-default', onClick: this.handlerClickStop },
-	                    'Stop'
+	                    { className: 'btn btn-default', 'data-calc-type': 'sub' },
+	                    '-'
 	                ),
 	                React.createElement(
 	                    'button',
-	                    { className: 'btn btn-default', onClick: this.handlerClickReset },
-	                    'Reset'
+	                    { className: 'btn btn-default', 'data-calc-type': 'mul' },
+	                    '*'
+	                ),
+	                React.createElement(
+	                    'button',
+	                    { className: 'btn btn-default', 'data-calc-type': 'div' },
+	                    '/'
 	                )
+	            ),
+	            React.createElement(
+	                'h1',
+	                null,
+	                this.state.result
 	            )
 	        );
 	    }
@@ -101,7 +165,7 @@
 
 	var container = document.getElementById('main');
 
-	ReactDOM.render(React.createElement(LoadCounter, null), container);
+	ReactDOM.render(React.createElement(Counter, null), container);
 
 /***/ },
 /* 1 */

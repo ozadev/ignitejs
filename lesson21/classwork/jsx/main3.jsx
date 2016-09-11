@@ -17,7 +17,7 @@ var LoadCounter = React.createClass({
     handlerClickStop: function() {
         clearInterval(this.counterId);
     },
-    handlerClickClear: function() {
+    handlerClickReset: function() {
         this.setState({counter: 0});
     },
     render: function() {
@@ -27,7 +27,7 @@ var LoadCounter = React.createClass({
                 <p>
                     <button className="btn btn-default" onClick={this.handlerClickStart}>Start</button>
                     <button className="btn btn-default" onClick={this.handlerClickStop}>Stop</button>
-                    <button className="btn btn-default" onClick={this.handlerClickClear}>Reset</button>
+                    <button className="btn btn-default" onClick={this.handlerClickReset}>Reset</button>
                 </p>
             </div>
         );

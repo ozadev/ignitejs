@@ -47,25 +47,19 @@
 	var React = __webpack_require__(1);
 	var ReactDOM = __webpack_require__(34);
 
-	var LoadCounter = React.createClass({
-	    displayName: 'LoadCounter',
+	var Counter = React.createClass({
+	    displayName: 'Counter',
 
 	    getInitialState: function () {
 	        return {
 	            counter: 0
 	        };
 	    },
-	    counterInc: function () {
+	    handlerClickInc: function () {
 	        this.setState({ counter: this.state.counter + 1 });
 	    },
-	    handlerClickStart: function () {
-	        this.counterId = setInterval(this.counterInc, 1000);
-	    },
-	    handlerClickStop: function () {
-	        clearInterval(this.counterId);
-	    },
-	    handlerClickReset: function () {
-	        this.setState({ counter: 0 });
+	    handlerClickDec: function () {
+	        this.setState({ counter: this.state.counter - 1 });
 	    },
 	    render: function () {
 	        return React.createElement(
@@ -81,18 +75,13 @@
 	                null,
 	                React.createElement(
 	                    'button',
-	                    { className: 'btn btn-default', onClick: this.handlerClickStart },
-	                    'Start'
+	                    { className: 'btn btn-default', onClick: this.handlerClickInc },
+	                    '+'
 	                ),
 	                React.createElement(
 	                    'button',
-	                    { className: 'btn btn-default', onClick: this.handlerClickStop },
-	                    'Stop'
-	                ),
-	                React.createElement(
-	                    'button',
-	                    { className: 'btn btn-default', onClick: this.handlerClickReset },
-	                    'Reset'
+	                    { className: 'btn btn-default', onClick: this.handlerClickDec },
+	                    '-'
 	                )
 	            )
 	        );
@@ -101,7 +90,7 @@
 
 	var container = document.getElementById('main');
 
-	ReactDOM.render(React.createElement(LoadCounter, null), container);
+	ReactDOM.render(React.createElement(Counter, null), container);
 
 /***/ },
 /* 1 */

@@ -47,53 +47,117 @@
 	var React = __webpack_require__(1);
 	var ReactDOM = __webpack_require__(34);
 
-	var LoadCounter = React.createClass({
-	    displayName: 'LoadCounter',
+	var Counter = React.createClass({
+	    displayName: 'Counter',
 
 	    getInitialState: function () {
 	        return {
-	            counter: 0
+	            nameClass: '',
+	            emailClass: '',
+	            telClass: '',
+	            messageClass: ''
 	        };
 	    },
-	    counterInc: function () {
-	        this.setState({ counter: this.state.counter + 1 });
+	    handlerChangeName: function (e) {
+	        var nameRegExp = /^[A-Za-z ]+$/;
+	        var addClass = 'valid';
+	        if (!nameRegExp.test(e.target.value)) {
+	            addClass = 'invalid';
+	        }
+	        if (e.target.value === '') {
+	            addClass = '';
+	        }
+	        this.setState({ nameClass: addClass });
 	    },
-	    handlerClickStart: function () {
-	        this.counterId = setInterval(this.counterInc, 1000);
+	    handlerChangeEmail: function (e) {
+	        var emailRegExp = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+	        var addClass = 'valid';
+	        if (!emailRegExp.test(e.target.value)) {
+	            addClass = 'invalid';
+	        }
+	        if (e.target.value === '') {
+	            addClass = '';
+	        }
+	        this.setState({ emailClass: addClass });
 	    },
-	    handlerClickStop: function () {
-	        clearInterval(this.counterId);
+	    handlerChangeTel: function (e) {
+	        var telRegExp = /^[0-9]+$/;
+	        var addClass = 'valid';
+	        if (!telRegExp.test(e.target.value)) {
+	            addClass = 'invalid';
+	        }
+	        if (e.target.value === '') {
+	            addClass = '';
+	        }
+	        this.setState({ telClass: addClass });
 	    },
-	    handlerClickReset: function () {
-	        this.setState({ counter: 0 });
+	    handlerChangeMessage: function (e) {
+	        var messageRegExp = /^.{10,}$/;
+	        var addClass = 'valid';
+	        if (!messageRegExp.test(e.target.value)) {
+	            addClass = 'invalid';
+	        }
+	        if (e.target.value === '') {
+	            addClass = '';
+	        }
+	        this.setState({ messageClass: addClass });
+	    },
+	    handlerSubmit: function (e) {
+	        if (this.state.nameClass === 'valid' && this.state.emailClass === 'valid' && this.state.telClass === 'valid' && this.state.messageClass === 'valid') {
+	            alert('Success, data sent to the server!');
+	        } else {
+	            alert('Fail, data not valid!');
+	            e.preventDefault();
+	        }
 	    },
 	    render: function () {
 	        return React.createElement(
-	            'div',
-	            null,
+	            'form',
+	            { className: 'form-control input-group', onSubmit: this.handlerSubmit },
 	            React.createElement(
-	                'h1',
-	                null,
-	                this.state.counter
+	                'div',
+	                { className: 'form-group' },
+	                React.createElement('input', { type: 'text', className: "input-lg form-control " + this.state.nameClass, onChange: this.handlerChangeName, placeholder: 'Enter name' }),
+	                React.createElement(
+	                    'p',
+	                    null,
+	                    '(only english letters)'
+	                )
 	            ),
 	            React.createElement(
-	                'p',
-	                null,
+	                'div',
+	                { className: 'form-group' },
+	                React.createElement('input', { type: 'email', className: "input-lg form-control " + this.state.emailClass, onChange: this.handlerChangeEmail, placeholder: 'Enter email' }),
 	                React.createElement(
-	                    'button',
-	                    { className: 'btn btn-default', onClick: this.handlerClickStart },
-	                    'Start'
-	                ),
-	                React.createElement(
-	                    'button',
-	                    { className: 'btn btn-default', onClick: this.handlerClickStop },
-	                    'Stop'
-	                ),
-	                React.createElement(
-	                    'button',
-	                    { className: 'btn btn-default', onClick: this.handlerClickReset },
-	                    'Reset'
+	                    'p',
+	                    null,
+	                    '(require valid email)'
 	                )
+	            ),
+	            React.createElement(
+	                'div',
+	                { className: 'form-group' },
+	                React.createElement('input', { type: 'tel', className: "input-lg form-control " + this.state.telClass, onChange: this.handlerChangeTel, placeholder: 'Enter tel' }),
+	                React.createElement(
+	                    'p',
+	                    null,
+	                    '(only numbers)'
+	                )
+	            ),
+	            React.createElement(
+	                'div',
+	                { className: 'form-group' },
+	                React.createElement('input', { type: 'text', className: "input-lg form-control " + this.state.messageClass, onChange: this.handlerChangeMessage, placeholder: 'Enter message' }),
+	                React.createElement(
+	                    'p',
+	                    null,
+	                    '(minimum 10 symbols)'
+	                )
+	            ),
+	            React.createElement(
+	                'div',
+	                { className: 'form-group' },
+	                React.createElement('input', { type: 'submit', className: 'btn btn-lg btn-info', value: 'Submit' })
 	            )
 	        );
 	    }
@@ -101,7 +165,7 @@
 
 	var container = document.getElementById('main');
 
-	ReactDOM.render(React.createElement(LoadCounter, null), container);
+	ReactDOM.render(React.createElement(Counter, null), container);
 
 /***/ },
 /* 1 */
