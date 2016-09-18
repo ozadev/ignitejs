@@ -76,19 +76,21 @@
 
 	var _reactRouter = __webpack_require__(277);
 
-	var _view = __webpack_require__(340);
-
-	var _view2 = _interopRequireDefault(_view);
-
-	var _view3 = __webpack_require__(341);
-
-	var _view4 = _interopRequireDefault(_view3);
-
-	var _home = __webpack_require__(342);
+	var _home = __webpack_require__(343);
 
 	var _home2 = _interopRequireDefault(_home);
 
+	var _listView = __webpack_require__(344);
+
+	var _listView2 = _interopRequireDefault(_listView);
+
+	var _tableView = __webpack_require__(345);
+
+	var _tableView2 = _interopRequireDefault(_tableView);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var users = [{ first_name: "Matthew", last_name: "Phillips", email: "mphillips0@myspace.com", gender: "Male", ip_address: "14.241.172.154", id: 23468 }, { first_name: "Larry", last_name: "Weaver", email: "lweaver1@slideshare.net", gender: "Male", ip_address: "126.139.9.128", id: 89078 }, { first_name: "Barbara", last_name: "Tucker", email: "btucker2@cbc.ca", gender: "Female", ip_address: "92.195.229.16", id: 56435 }, { first_name: "Jonathan", last_name: "Cook", email: "jcook3@fc2.com", gender: "Male", ip_address: "187.79.225.71", id: 78908 }, { first_name: "Jean", last_name: "Flores", email: "jflores4@last.fm", gender: "Female", ip_address: "222.197.158.249, id:67653" }, { first_name: "Kimberly", last_name: "Nelson", email: "knelson5@nifty.com", gender: "Female", ip_address: "111.174.89.57", id: 83425 }, { first_name: "Willie", last_name: "Banks", email: "wbanks6@abc.net.au", gender: "Male", ip_address: "97.0.19.154", id: 99873 }, { first_name: "Michael", last_name: "King", email: "mking7@w3.org", gender: "Male", ip_address: "149.114.62.6", id: 34239 }];
 
 	var App = function (_React$Component) {
 	    (0, _inherits3.default)(App, _React$Component);
@@ -115,11 +117,11 @@
 	                            null,
 	                            _react2.default.createElement(
 	                                _reactRouter.Link,
-	                                { to: '/' },
+	                                { to: '/listView' },
 	                                _react2.default.createElement(
 	                                    'button',
 	                                    { className: 'btn btn-lg btn-success' },
-	                                    'Home'
+	                                    'List view'
 	                                )
 	                            )
 	                        ),
@@ -128,24 +130,11 @@
 	                            null,
 	                            _react2.default.createElement(
 	                                _reactRouter.Link,
-	                                { to: '/view1' },
+	                                { to: '/tableView' },
 	                                _react2.default.createElement(
 	                                    'button',
 	                                    { className: 'btn btn-lg btn-success' },
-	                                    'View 1'
-	                                )
-	                            )
-	                        ),
-	                        _react2.default.createElement(
-	                            'li',
-	                            null,
-	                            _react2.default.createElement(
-	                                _reactRouter.Link,
-	                                { to: '/view2' },
-	                                _react2.default.createElement(
-	                                    'button',
-	                                    { className: 'btn btn-lg btn-success' },
-	                                    'View 2'
+	                                    'Table view'
 	                                )
 	                            )
 	                        )
@@ -169,8 +158,9 @@
 	        _reactRouter.Route,
 	        { path: '/', component: App },
 	        _react2.default.createElement(_reactRouter.IndexRoute, { component: _home2.default }),
-	        _react2.default.createElement(_reactRouter.Route, { path: 'view1', component: _view2.default }),
-	        _react2.default.createElement(_reactRouter.Route, { path: 'view2', component: _view4.default })
+	        _react2.default.createElement(_reactRouter.Route, { path: 'listView', component: _listView2.default, data: users }),
+	        _react2.default.createElement(_reactRouter.Route, { path: 'tableView', component: _tableView2.default, data: users }),
+	        _react2.default.createElement(_reactRouter.Redirect, { from: '*', to: '/' })
 	    )
 	), document.getElementById('main'));
 
@@ -28747,125 +28737,10 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 340 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-
-	var _getPrototypeOf = __webpack_require__(241);
-
-	var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
-
-	var _classCallCheck2 = __webpack_require__(244);
-
-	var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
-
-	var _createClass2 = __webpack_require__(245);
-
-	var _createClass3 = _interopRequireDefault(_createClass2);
-
-	var _possibleConstructorReturn2 = __webpack_require__(249);
-
-	var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
-
-	var _inherits2 = __webpack_require__(269);
-
-	var _inherits3 = _interopRequireDefault(_inherits2);
-
-	var _react = __webpack_require__(1);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	var View1 = function (_React$Component) {
-	    (0, _inherits3.default)(View1, _React$Component);
-
-	    function View1(props) {
-	        (0, _classCallCheck3.default)(this, View1);
-	        return (0, _possibleConstructorReturn3.default)(this, (View1.__proto__ || (0, _getPrototypeOf2.default)(View1)).call(this, props));
-	    }
-
-	    (0, _createClass3.default)(View1, [{
-	        key: 'render',
-	        value: function render() {
-	            return _react2.default.createElement(
-	                'h3',
-	                null,
-	                'View 1'
-	            );
-	        }
-	    }]);
-	    return View1;
-	}(_react2.default.Component);
-
-	exports.default = View1;
-
-/***/ },
-/* 341 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-
-	var _getPrototypeOf = __webpack_require__(241);
-
-	var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
-
-	var _classCallCheck2 = __webpack_require__(244);
-
-	var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
-
-	var _createClass2 = __webpack_require__(245);
-
-	var _createClass3 = _interopRequireDefault(_createClass2);
-
-	var _possibleConstructorReturn2 = __webpack_require__(249);
-
-	var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
-
-	var _inherits2 = __webpack_require__(269);
-
-	var _inherits3 = _interopRequireDefault(_inherits2);
-
-	var _react = __webpack_require__(1);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	var View2 = function (_React$Component) {
-	    (0, _inherits3.default)(View2, _React$Component);
-
-	    function View2(props) {
-	        (0, _classCallCheck3.default)(this, View2);
-	        return (0, _possibleConstructorReturn3.default)(this, (View2.__proto__ || (0, _getPrototypeOf2.default)(View2)).call(this, props));
-	    }
-
-	    (0, _createClass3.default)(View2, [{
-	        key: 'render',
-	        value: function render() {
-	            return _react2.default.createElement(
-	                'h3',
-	                null,
-	                'View 2'
-	            );
-	        }
-	    }]);
-	    return View2;
-	}(_react2.default.Component);
-
-	exports.default = View2;
-
-/***/ },
-/* 342 */
+/* 340 */,
+/* 341 */,
+/* 342 */,
+/* 343 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -28922,6 +28797,313 @@
 	}(_react2.default.Component);
 
 	exports.default = Home;
+
+/***/ },
+/* 344 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
+	var _extends2 = __webpack_require__(353);
+
+	var _extends3 = _interopRequireDefault(_extends2);
+
+	var _getPrototypeOf = __webpack_require__(241);
+
+	var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
+
+	var _classCallCheck2 = __webpack_require__(244);
+
+	var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+	var _createClass2 = __webpack_require__(245);
+
+	var _createClass3 = _interopRequireDefault(_createClass2);
+
+	var _possibleConstructorReturn2 = __webpack_require__(249);
+
+	var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+
+	var _inherits2 = __webpack_require__(269);
+
+	var _inherits3 = _interopRequireDefault(_inherits2);
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _reactRouter = __webpack_require__(277);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var ListView = function (_React$Component) {
+	    (0, _inherits3.default)(ListView, _React$Component);
+
+	    function ListView(props) {
+	        (0, _classCallCheck3.default)(this, ListView);
+	        return (0, _possibleConstructorReturn3.default)(this, (ListView.__proto__ || (0, _getPrototypeOf2.default)(ListView)).call(this, props));
+	    }
+
+	    (0, _createClass3.default)(ListView, [{
+	        key: 'render',
+	        value: function render() {
+	            var listElems = this.props.route.data.map(function (item, index) {
+	                return _react2.default.createElement(
+	                    'li',
+	                    { className: 'list-group-item', key: index },
+	                    _react2.default.createElement(
+	                        _reactRouter.Link,
+	                        { to: { pathname: '/listView/' + item.id, query: (0, _extends3.default)({}, item) } },
+	                        item.first_name + ' ' + item.last_name + ';'
+	                    )
+	                );
+	            });
+	            return _react2.default.createElement(
+	                'div',
+	                null,
+	                _react2.default.createElement(
+	                    'h3',
+	                    null,
+	                    'List view'
+	                ),
+	                _react2.default.createElement(
+	                    'ul',
+	                    { className: 'list-group' },
+	                    listElems
+	                )
+	            );
+	        }
+	    }]);
+	    return ListView;
+	}(_react2.default.Component);
+
+	exports.default = ListView;
+
+/***/ },
+/* 345 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
+	var _extends2 = __webpack_require__(353);
+
+	var _extends3 = _interopRequireDefault(_extends2);
+
+	var _getPrototypeOf = __webpack_require__(241);
+
+	var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
+
+	var _classCallCheck2 = __webpack_require__(244);
+
+	var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+	var _createClass2 = __webpack_require__(245);
+
+	var _createClass3 = _interopRequireDefault(_createClass2);
+
+	var _possibleConstructorReturn2 = __webpack_require__(249);
+
+	var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+
+	var _inherits2 = __webpack_require__(269);
+
+	var _inherits3 = _interopRequireDefault(_inherits2);
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _reactRouter = __webpack_require__(277);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var TableView = function (_React$Component) {
+	    (0, _inherits3.default)(TableView, _React$Component);
+
+	    function TableView(props) {
+	        (0, _classCallCheck3.default)(this, TableView);
+	        return (0, _possibleConstructorReturn3.default)(this, (TableView.__proto__ || (0, _getPrototypeOf2.default)(TableView)).call(this, props));
+	    }
+
+	    (0, _createClass3.default)(TableView, [{
+	        key: 'render',
+	        value: function render() {
+	            var tableContent = this.props.route.data.map(function (elem, index) {
+	                return _react2.default.createElement(
+	                    'tr',
+	                    { key: index },
+	                    _react2.default.createElement(
+	                        'td',
+	                        null,
+	                        _react2.default.createElement(
+	                            _reactRouter.Link,
+	                            { to: { pathname: '/tableView/' + elem.id, query: (0, _extends3.default)({}, elem) } },
+	                            elem.first_name
+	                        )
+	                    ),
+	                    _react2.default.createElement(
+	                        'td',
+	                        null,
+	                        elem.last_name
+	                    ),
+	                    _react2.default.createElement(
+	                        'td',
+	                        null,
+	                        elem.gender
+	                    )
+	                );
+	            });
+
+	            return _react2.default.createElement(
+	                'div',
+	                null,
+	                _react2.default.createElement(
+	                    'h3',
+	                    null,
+	                    'Table view'
+	                ),
+	                _react2.default.createElement(
+	                    'table',
+	                    { className: 'table' },
+	                    _react2.default.createElement(
+	                        'thead',
+	                        null,
+	                        _react2.default.createElement(
+	                            'tr',
+	                            null,
+	                            _react2.default.createElement(
+	                                'th',
+	                                null,
+	                                'First name'
+	                            ),
+	                            _react2.default.createElement(
+	                                'th',
+	                                null,
+	                                'Last name'
+	                            ),
+	                            _react2.default.createElement(
+	                                'th',
+	                                null,
+	                                'Gender'
+	                            )
+	                        )
+	                    ),
+	                    _react2.default.createElement(
+	                        'tbody',
+	                        null,
+	                        tableContent
+	                    )
+	                )
+	            );
+	        }
+	    }]);
+	    return TableView;
+	}(_react2.default.Component);
+
+	exports.default = TableView;
+
+/***/ },
+/* 346 */,
+/* 347 */,
+/* 348 */,
+/* 349 */,
+/* 350 */,
+/* 351 */,
+/* 352 */,
+/* 353 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	exports.__esModule = true;
+
+	var _assign = __webpack_require__(354);
+
+	var _assign2 = _interopRequireDefault(_assign);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	exports.default = _assign2.default || function (target) {
+	  for (var i = 1; i < arguments.length; i++) {
+	    var source = arguments[i];
+
+	    for (var key in source) {
+	      if (Object.prototype.hasOwnProperty.call(source, key)) {
+	        target[key] = source[key];
+	      }
+	    }
+	  }
+
+	  return target;
+	};
+
+/***/ },
+/* 354 */
+/***/ function(module, exports, __webpack_require__) {
+
+	module.exports = { "default": __webpack_require__(355), __esModule: true };
+
+/***/ },
+/* 355 */
+/***/ function(module, exports, __webpack_require__) {
+
+	__webpack_require__(356);
+	module.exports = __webpack_require__(183).Object.assign;
+
+/***/ },
+/* 356 */
+/***/ function(module, exports, __webpack_require__) {
+
+	// 19.1.3.1 Object.assign(target, source)
+	var $export = __webpack_require__(181);
+
+	$export($export.S + $export.F, 'Object', {assign: __webpack_require__(357)});
+
+/***/ },
+/* 357 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	// 19.1.2.1 Object.assign(target, source, ...)
+	var getKeys  = __webpack_require__(202)
+	  , gOPS     = __webpack_require__(261)
+	  , pIE      = __webpack_require__(262)
+	  , toObject = __webpack_require__(218)
+	  , IObject  = __webpack_require__(205)
+	  , $assign  = Object.assign;
+
+	// should work with symbols and should have deterministic property order (V8 bug)
+	module.exports = !$assign || __webpack_require__(192)(function(){
+	  var A = {}
+	    , B = {}
+	    , S = Symbol()
+	    , K = 'abcdefghijklmnopqrst';
+	  A[S] = 7;
+	  K.split('').forEach(function(k){ B[k] = k; });
+	  return $assign({}, A)[S] != 7 || Object.keys($assign({}, B)).join('') != K;
+	}) ? function assign(target, source){ // eslint-disable-line no-unused-vars
+	  var T     = toObject(target)
+	    , aLen  = arguments.length
+	    , index = 1
+	    , getSymbols = gOPS.f
+	    , isEnum     = pIE.f;
+	  while(aLen > index){
+	    var S      = IObject(arguments[index++])
+	      , keys   = getSymbols ? getKeys(S).concat(getSymbols(S)) : getKeys(S)
+	      , length = keys.length
+	      , j      = 0
+	      , key;
+	    while(length > j)if(isEnum.call(S, key = keys[j++]))T[key] = S[key];
+	  } return T;
+	} : $assign;
 
 /***/ }
 /******/ ]);

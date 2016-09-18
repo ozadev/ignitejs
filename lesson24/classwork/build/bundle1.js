@@ -89,9 +89,9 @@
 	var App = function (_React$Component) {
 	    (0, _inherits3.default)(App, _React$Component);
 
-	    function App() {
+	    function App(props) {
 	        (0, _classCallCheck3.default)(this, App);
-	        return (0, _possibleConstructorReturn3.default)(this, (App.__proto__ || (0, _getPrototypeOf2.default)(App)).apply(this, arguments));
+	        return (0, _possibleConstructorReturn3.default)(this, (App.__proto__ || (0, _getPrototypeOf2.default)(App)).call(this, props));
 	    }
 
 	    (0, _createClass3.default)(App, [{
@@ -28767,9 +28767,9 @@
 	var View1 = function (_React$Component) {
 	    (0, _inherits3.default)(View1, _React$Component);
 
-	    function View1() {
+	    function View1(props) {
 	        (0, _classCallCheck3.default)(this, View1);
-	        return (0, _possibleConstructorReturn3.default)(this, (View1.__proto__ || (0, _getPrototypeOf2.default)(View1)).apply(this, arguments));
+	        return (0, _possibleConstructorReturn3.default)(this, (View1.__proto__ || (0, _getPrototypeOf2.default)(View1)).call(this, props));
 	    }
 
 	    (0, _createClass3.default)(View1, [{
@@ -28826,9 +28826,9 @@
 	var View2 = function (_React$Component) {
 	    (0, _inherits3.default)(View2, _React$Component);
 
-	    function View2() {
+	    function View2(props) {
 	        (0, _classCallCheck3.default)(this, View2);
-	        return (0, _possibleConstructorReturn3.default)(this, (View2.__proto__ || (0, _getPrototypeOf2.default)(View2)).apply(this, arguments));
+	        return (0, _possibleConstructorReturn3.default)(this, (View2.__proto__ || (0, _getPrototypeOf2.default)(View2)).call(this, props));
 	    }
 
 	    (0, _createClass3.default)(View2, [{

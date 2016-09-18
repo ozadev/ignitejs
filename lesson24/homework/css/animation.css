@@ -1,0 +1,17 @@
+﻿.switch-appear {
+    opacity: 0.1;
+}
+
+.switch-appear-active {
+    opacity: 1;
+    transition: 500ms ease-in-out all;
+}
+
+.switch-enter {
+    opacity: 0.1;
+}
+
+.switch-enter-active {
+    opacity: 1;
+    transition: opacity 500ms ease-in;
+}

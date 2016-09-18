@@ -8,6 +8,9 @@ import View2 from './views/view2.jsx';
 import Home from './views/home.jsx';
 
 class App extends React.Component {
+    constructor(props) {
+        super(props)
+    }
     render() {
         return (
             <div>
