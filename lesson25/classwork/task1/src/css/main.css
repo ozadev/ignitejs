@@ -1,0 +1,17 @@
+
+.block-box {
+    width: 200px;
+    height: 100px;
+    background-color: dodgerblue;
+}
+
+.block-circle {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    background-color: firebrick;
+}
+
+.block-box, .block-circle {
+    border: 3px solid black;
+}
