@@ -1,0 +1,9 @@
+@import 'bootstrap.css';
+
+.glyphicon {
+    cursor: pointer;
+}
+
+ul {
+    margin-top: 20px;
+}
