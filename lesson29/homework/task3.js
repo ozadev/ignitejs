@@ -3,12 +3,28 @@ const fs = require('fs');
 const url  = require('url');
 const port = process.env.port || 1337;
 
-http.createServer(function (req, res) {
+var counter = 1;
 
-    console.log(req.method);
-    console.log(req.url);
+const server = http.createServer((req, res) => {
+    var headers = req.headers;
+
+    var text = '';
+    for (var prop in headers) {
+        text += `${prop}: ${headers[prop]};\n`
+    }
+
+    var file = `${counter}.txt`;
+    counter++;
+
+    fs.writeFile(`files/${file}`, text, (err) => {
+        if (err) throw err;
+        console.log(`Request headers saved to file ${file}`)
+    });
+
 
     var path = url.parse(req.url).pathname;
+
+    // Valid path: '/', '/index.html', '/test' (for POST req)
 
     if (path == '/index.html' || path == '/') {
 
@@ -25,15 +41,18 @@ http.createServer(function (req, res) {
             res.end();
         })
     }
-    else if (path == '/test' && req.method == 'GET') {
-        console.log('Request: method = \'GET\', path = \'/test\';');
-        res.writeHead(200, {'Content-Type': 'text/html'});
-        res.end('Request: method = \'GET\', path = \'/test\';');
+    else if (path == '/test' && req.method == 'POST') {
+
+        req.on('data', (data) => {
+            res.writeHead(200, { 'Content-Type': 'text/html' });
+            res.end(JSON.stringify({message: data.toString()}));
+        });
     }
     else {
         res.writeHead(404, { 'Content-Type': 'text/html' });
-        res.end('Resource not found');
+        res.end('Error: resource not found');
     }
+
 
 }).listen(port);
 
