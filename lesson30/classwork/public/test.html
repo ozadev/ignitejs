@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+    <title>Lesson 30 classwork task3</title>
+    <script>
+        window.onload = function() {
+
+            function makeRequest() {
+                var value = document.getElementById("input").value;
+                console.log(value);
+
+                if (value === '') {
+                    return;
+                }
+
+                var xhr = new XMLHttpRequest();
+                xhr.open('POST', '/test');
+                xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+
+                xhr.onload = function() {
+                    document.getElementById('output').innerHTML += this.responseText + '<br />';
+                };
+
+                var valueEncoded = encodeURIComponent(value);
+                xhr.send('data=' + valueEncoded);
+            }
+
+
+            var btn = document.getElementById('btn');
+            btn.onclick = makeRequest;
+
+        }
+    </script>
+</head>
+<body>
+    <input type="text" id="input" />
+    <input type="button" value="Send POST" id="btn" />
+    <div id="output"></div>
+</body>
+</html>

@@ -38,11 +38,11 @@ module.exports = {
         // "lesson25/classwork/task3/build/bundle": "./lesson25/classwork/task3/src/main.jsx",
         // "lesson25/homework/task1/build/bundle": "./lesson25/homework/task1/src/main.jsx",
         // "lesson25/homework/task2/build/bundle": "./lesson25/homework/task2/src/main.jsx",
-        // "lesson26/classwork/task1/build/bundle": "./lesson26/classwork/task1/src/main.jsx",
-        // "lesson26/classwork/task2/build/bundle": "./lesson26/classwork/task2/src/main.jsx",
-        // "lesson26/classwork/task3/build/bundle": "./lesson26/classwork/task3/src/main.jsx",
-        // "lesson26/homework/task1/build/bundle": "./lesson26/homework/task1/src/main.jsx",
-        // "lesson26/homework/task2/build/bundle": "./lesson26/homework/task2/src/main.jsx",
+        "lesson26/classwork/task1/build/bundle": "./lesson26/classwork/task1/src/main.jsx",
+        "lesson26/classwork/task2/build/bundle": "./lesson26/classwork/task2/src/main.jsx",
+        "lesson26/classwork/task3/build/bundle": "./lesson26/classwork/task3/src/main.jsx",
+        "lesson26/homework/task1/build/bundle": "./lesson26/homework/task1/src/main.jsx",
+        "lesson26/homework/task2/build/bundle": "./lesson26/homework/task2/src/main.jsx",
         "lesson26/homework/task3/build/bundle": "./lesson26/homework/task3/src/main.jsx"
     },
            

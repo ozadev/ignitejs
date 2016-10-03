@@ -6,13 +6,15 @@
     "webpack": "webpack -w"
   },
   "dependencies": {
-    "react": "^15.3.1",
-    "react-dom": "^15.3.1",
-    "react-router": "^2.8.0",
     "babel-polyfill": "^6.13.0",
     "babel-runtime": "^6.11.6",
+    "body-parser": "^1.15.2",
+    "express": "^4.14.0",
     "flux": "^2.1.1",
+    "react": "^15.3.1",
+    "react-dom": "^15.3.1",
     "react-redux": "^4.4.5",
+    "react-router": "^2.8.0",
     "redux": "^3.5.2",
     "redux-thunk": "^2.1.0"
   },
