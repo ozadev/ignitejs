@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+    <title>Lesson 30 Homework task2</title>
+    <script>
+        function getUserRequest(id) {
+            var xhr = new XMLHttpRequest();
+            xhr.open('GET', '/users/' + id);
+
+            xhr.onload = function () {
+                document.getElementById('user-info').innerHTML = this.responseText + '<br />';
+            };
+
+            xhr.send();
+        }
+
+        users = [
+            { name: 'Jane', age: 23 }, { name: 'John', age: 30 }, { name: 'Vasya', age: 25 },
+            { name: 'Yvonne', age: 34 }, { name: 'Will', age: 18 }, {name: 'Jack', age: 26}
+        ];
+
+        window.onload = function() {
+            var ul = document.createElement('ul');
+
+            users.forEach(function(elem, index) {
+                var li = document.createElement('li');
+                li.innerHTML = elem.name;
+                li.dataset.id = index;
+                ul.appendChild(li);
+            });
+
+            ul.onclick = function(e) {
+                if (e.target.tagName != 'LI') {
+                    return;
+                }
+
+                getUserRequest(e.target.dataset.id);
+            };
+
+            document.getElementById('user-list').appendChild(ul);
+        }
+    </script>
+</head>
+<body>
+    <div id="user-list"></div>
+    <div id="user-info"></div>
+</body>
+</html>
