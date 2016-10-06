@@ -1,0 +1,31 @@
+﻿<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"> 
+<head> 
+	<meta charset="utf-8">
+	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+	<!--<link rel="stylesheet" type="text/css" href="css/style.css" />  -->
+	<title>Lesson 31 classwork</title>
+	<style>
+	</style>
+</head>
+<body> 
+	<div class="panel panel-primary">
+        <table class="table table-striped">
+			<thead>
+				<tr>
+					<th>Name</th>
+					<th>Info</th>
+				</tr>
+			</thead>
+			<tbody>
+				<% data.forEach(function(item) { %>
+				<tr>
+					<td><%= item.name %></td>
+					<td><%= item.info %></td>
+				</tr>
+				<% }); %>
+			</tbody>
+		</table> 
+	</div>
+</body>
+</html>
