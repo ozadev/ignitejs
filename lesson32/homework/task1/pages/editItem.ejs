@@ -1,0 +1,53 @@
+﻿<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta charset="utf-8" />
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+	<title>Lesson 31 Homework</title>
+	<script>
+		window.onload = function() {
+
+			function makeRequest() {
+				var name = document.getElementById("name-inp").value;
+				var info = document.getElementById("info-inp").value;
+				console.log(name);
+
+				if (name === '' || info === '') {
+					return;
+				}
+
+				var xhr = new XMLHttpRequest();
+				xhr.open('PUT', '/editItem');
+				xhr.setRequestHeader('Content-Type', 'application/json');
+
+				xhr.onload = function() {
+					window.location = this.responseText;
+				};
+
+				var jsonData = JSON.stringify({
+					name: name,
+					info: info
+				});
+
+				xhr.send(jsonData);
+			}
+
+
+			var btn = document.getElementById('btn');
+			btn.onclick = makeRequest;
+
+		}
+	</script>
+</head>
+<body>
+	<div>
+		<label>Name: </label>
+		<input type="text" id="name-inp" placeholder="Name" value="<%= item.name %>" />
+	</div>
+	<div>
+		<label>Info: </label>
+		<input type="text" id="info-inp" placeholder="Info" value="<%= item.info %>" />
+	</div>
+	<input type="button" value="Apply" id="btn" />
+</body>
+</html>

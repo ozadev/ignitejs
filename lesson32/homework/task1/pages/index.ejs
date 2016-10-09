@@ -1,0 +1,80 @@
+﻿<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"> 
+<head> 
+	<meta charset="utf-8">
+	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+	<!--<link rel="stylesheet" type="text/css" href="css/style.css" />  -->
+	<title>Lesson 31 Homework</title>
+	<style>
+		a {
+			cursor: pointer;
+		}
+	</style>
+	<script>
+		window.onload = function() {
+
+			document.querySelector('#delete-btn').addEventListener('click', function(e) {
+				var itemId = document.querySelector('#sel-item-id').value;
+
+				if (itemId === '') {
+					return;
+				}
+
+				var xhr = new XMLHttpRequest();
+				xhr.open('DELETE', 'delete/' + itemId);
+
+				xhr.onload = function() {
+					location = this.responseText;
+				}
+
+				xhr.send();
+			});
+
+
+			document.querySelector('#edit-btn').addEventListener('click', function(e) {
+				var itemId = document.querySelector('#sel-item-id').value;
+
+				if (itemId === '') {
+					return;
+				}
+
+				var xhr = new XMLHttpRequest();
+				xhr.open('GET', 'edit/' + itemId);
+
+				xhr.onload = function() {
+					location = this.responseText;
+				}
+
+				xhr.send();
+			});
+
+		}
+	</script>
+</head>
+<body> 
+	<div class="panel panel-primary">
+        <table class="table table-striped">
+			<thead>
+				<tr>
+					<th>ID</th>
+					<th>Name</th>
+					<th>Info</th>
+				</tr>
+			</thead>
+			<tbody>
+				<% data.forEach(function(item) { %>
+				<tr>
+					<td><%= item.id %></td>
+					<td><%= item.name %></td>
+					<td><%= item.info %></td>
+				</tr>
+				<% }); %>
+			</tbody>
+		</table>
+	</div>
+	<a class="btn btn-default" href="/addItem">Add Item</a>
+	<a id="edit-btn" class="btn btn-default">Edit Item</a>
+	<a id="delete-btn" class="btn btn-default">Delete Item</a>
+	<input id='sel-item-id' type="text" placeholder="Enter ID"/>
+</body>
+</html>
