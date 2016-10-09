@@ -21,7 +21,8 @@
     "react-redux": "^4.4.5",
     "react-router": "^2.8.0",
     "redux": "^3.5.2",
-    "redux-thunk": "^2.1.0"
+    "redux-thunk": "^2.1.0",
+    "restify": "^4.1.1"
   },
   "devDependencies": {
     "webpack": "^1.13.2",
