@@ -1,0 +1,40 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>Lesson 34 hw task 1</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" /> 
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+        window.onload = function () {
+
+            var container = document.getElementById('output');
+
+            var namespace = io('/namespace');
+
+            namespace.on('message', function (data) {
+                console.log(data);
+                container.innerHTML += data.text + '</br>';
+
+                namespace.emit('receive_message');
+            });
+
+            namespace.on('connect', function () {
+                console.log('connected to namespace');
+            });
+
+            namespace.on('disconnect', function () {
+                console.log('disconnected from namespace');
+            });
+
+            namespace.on('error', function (err) {
+                console.log(err);
+            });
+        }
+    </script>
+</head>
+<body>
+    <h3 id="output"></h3>
+</body>
+</html>
